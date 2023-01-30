@@ -138,6 +138,7 @@ $('body').on('click', '[data-modal]:not(.modal)', function (e) {
   if (!$('.backdrop').hasClass('active')) $('.backdrop').addClass('active');
   $('.modal.active').removeClass('active');
   $(".modal[data-modal=\"".concat($(e.currentTarget).attr('data-modal'), "\"]")).addClass('active');
+  $('html, body').toggleClass('overflow');
   if ($(e.currentTarget).attr('data-modal') === 'thanks') {
     setTimeout(function () {
       $('.modal.active').find('svg').addClass('animate');
@@ -149,9 +150,13 @@ $('body').on('click', '[data-modal]:not(.modal)', function (e) {
 var closeModal = function closeModal() {
   $('.backdrop').removeClass('active');
   $('.modal').removeClass('active');
+  $('.hamburger').removeClass('active');
+  $('.menu').removeClass('active');
   $('.modal').find('svg').removeClass('animate');
+  $('html, body').removeClass('overflow');
 };
 $('body').on('click', '.modal__close, .modal .close', closeModal);
+$('body').on('click', '.mobile-sidebar .close', closeModal);
 $('body').on('click', '.backdrop', function (e) {
   if ($(e.target)[0].className === 'backdrop active') closeModal();
 });
@@ -159,6 +164,9 @@ $('body').on('click', '.backdrop', function (e) {
 // close modal on press ESC
 $(document).keyup(function (e) {
   if (e.keyCode === 27 && $('.backdrop').hasClass('active')) closeModal();
+});
+$('body').on('submit', 'form', function (e) {
+  e.preventDefault();
 });
 
 // tabs .bar animation

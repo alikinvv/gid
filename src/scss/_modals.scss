@@ -1,0 +1,258 @@
+$trans: all 0.2s ease-in-out;
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(#282a31, 0.9);
+    opacity: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    transition: $trans;
+
+    &.active {
+        opacity: 1;
+        z-index: 30;
+    }
+
+    &.zindex {
+        z-index: 99999;
+    }
+}
+
+.modal {
+    @include r(767) {
+        width: 100%;
+        margin: 0 15px;
+        overflow: scroll;
+    }
+
+    display: none;
+    opacity: 0;
+    background: url(../img/texture.png) repeat center #fff;
+    border-radius: 18px;
+    cursor: default;
+    position: relative;
+    max-height: 90vh;
+    max-width: 95%;
+    padding: 40px 69px;
+    overflow: hidden;
+    width: 658px;
+
+    &.active {
+        display: block;
+        opacity: 1;
+    }
+
+    &__close {
+        @include r(767) {
+            width: 23px;
+            height: 23px;
+        }
+
+        position: absolute;
+        right: 17px;
+        top: 17px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: $trans;
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+
+    &__header {
+        @include r(767) {
+            display: block;
+        }
+
+        margin-bottom: 5px;
+        text-align: center;
+        font-weight: 800;
+        font-size: 34px;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__subtitle {
+        text-align: center;
+        color: rgba(41, 41, 41, 0.68);
+        margin-bottom: 39px;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__text {
+        @include r(767) {
+            br {
+                display: none;
+            }
+        }
+
+        font-weight: 500;
+        font-size: 21px;
+        text-align: center;
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 29px;
+        position: relative;
+        z-index: 1;
+
+        & > div,
+        & > input {
+            width: 47%;
+
+            input {
+                margin-bottom: 17px;
+                width: 100%;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+    }
+
+    textarea,
+    input {
+        padding: 17px 24px;
+    }
+
+    .checkbox {
+        display: inline-block;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn {
+        margin-bottom: 29px;
+        font-size: 17px;
+        padding: 20px 49px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .ornament {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transform: rotate(180deg) translate(-50%, -54%);
+        width: 364px;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &[data-modal='review'] {
+        padding: 34px 72px 46px 52px;
+
+        .reviews__card {
+            padding: 0;
+        }
+
+        .reviews__link {
+            display: block;
+        }
+
+        .rating {
+            margin-bottom: 20px;
+        }
+    }
+
+    &[data-modal='review-full'] {
+        padding: 0;
+        width: auto;
+        background: transparent;
+        overflow: visible;
+
+        .modal__close {
+            top: -37px;
+            right: -37px;
+
+            path {
+                fill: #fff;
+            }
+        }
+
+        img {
+            border-radius: 18px;
+            margin-bottom: -30px;
+        }
+
+        .review {
+            &__info {
+                background: #ffffff;
+                border-radius: 0 0 18px 18px;
+                padding: 30px 21px 17px;
+            }
+
+            &__title {
+                font-size: 14px;
+                font-weight: 300;
+                color: #a6a6a6;
+                margin-bottom: 8px;
+            }
+
+            &__link {
+                line-height: 1.4;
+            }
+        }
+    }
+
+    &[data-modal='thanks'] {
+        @include r(767) {
+            min-width: auto;
+            width: 95%;
+        }
+
+        text-align: center;
+        width: 560px;
+
+        & > svg {
+            width: 32px;
+
+            &.animate {
+                path {
+                    stroke-dashoffset: 0 !important;
+                }
+            }
+
+            path {
+                fill: none;
+                stroke: #000;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 3px;
+                transition: all 0.6s ease-in-out;
+
+                &.circle {
+                    stroke-dasharray: 83.60540771484375;
+                    stroke-dashoffset: 83.60540771484375;
+                }
+
+                &.arrow {
+                    stroke-dasharray: 29.41564178466797;
+                    stroke-dashoffset: -29.41564178466797;
+                }
+            }
+        }
+    }
+}

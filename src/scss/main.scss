@@ -1,5 +1,6 @@
 @charset 'UTF-8';
 @import 'mixins';
+@import 'modals';
 
 $trans: all 0.2s ease-in-out;
 $blue: #0188ff;
@@ -133,6 +134,11 @@ textarea {
     font-size: 17px;
     padding: 14px 24px;
     border-radius: 100px;
+    transition: $trans;
+
+    &:focus {
+        border-color: #333;
+    }
 }
 
 textarea {
@@ -149,6 +155,63 @@ a {
 
 strong {
     font-weight: 600;
+}
+
+.checkbox {
+    color: rgba(41, 41, 41, 0.62);
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.38;
+
+    a {
+        color: inherit;
+    }
+
+    input {
+        display: none;
+
+        &:checked + label {
+            &::before {
+                background: #dadada;
+            }
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+
+    label {
+        position: relative;
+        display: inline-block;
+        padding-left: 45px;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            border: 1px solid #dadada;
+            border-radius: 6px;
+            transition: $trans;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 7px;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 12px;
+            background: url(../img/icons/checkbox.svg) no-repeat center;
+            opacity: 0;
+            transition: $trans;
+        }
+    }
 }
 
 section {
@@ -212,7 +275,7 @@ blockquote {
 }
 
 .btn {
-    display: inline-block;
+    display: inline-flex;
     transition: $trans;
     text-decoration: none;
     border: 0;
@@ -224,6 +287,14 @@ blockquote {
     padding: 12px 20px;
     border: 1px solid transparent;
     line-height: 1;
+    align-items: center;
+
+    svg {
+        margin-left: 5px;
+        font-size: 8px;
+        fill: #fff;
+        transition: $trans;
+    }
 
     &:focus {
         outline: none;
@@ -233,6 +304,10 @@ blockquote {
         background: transparent;
         border: 1px solid #000;
         color: #000;
+
+        svg {
+            fill: #000;
+        }
     }
 
     &.center {
@@ -247,6 +322,14 @@ blockquote {
         &:hover {
             background: #000;
             color: #fff;
+
+            svg {
+                fill: #fff;
+            }
+        }
+
+        svg {
+            fill: #000;
         }
     }
 
@@ -1173,15 +1256,13 @@ blockquote {
         color: inherit;
         text-decoration: none;
 
-        &:hover {
-            .reviews__link {
-                text-decoration: none;
-            }
-        }
-
         &-bottom {
             padding-bottom: 0;
         }
+    }
+
+    a.reviews__card:hover .reviews__link {
+        text-decoration: none;
     }
 
     &__title {
@@ -1219,6 +1300,10 @@ blockquote {
             margin-right: 19px;
             flex-shrink: 0;
 
+            img {
+                border-radius: 20px;
+            }
+
             svg {
                 fill: #a6c2a2;
                 font-size: 34px;
@@ -1230,6 +1315,14 @@ blockquote {
             font-size: 15px;
             line-height: 1.27;
             margin-bottom: 7px;
+            display: flex;
+            align-items: center;
+
+            svg {
+                fill: $blue;
+                margin-left: 7px;
+                font-size: 14px;
+            }
         }
     }
 
@@ -1752,5 +1845,137 @@ blockquote {
         transition: $trans;
         font-size: 23px;
         fill: #9dc297;
+    }
+}
+
+.banner {
+    margin-bottom: 38px;
+
+    .container {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding: 54px 59px;
+        border-radius: 18px;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .btn {
+        padding: 19px 40px;
+        font-size: 17px;
+    }
+}
+
+.breadcrumbs {
+    margin-bottom: 21px;
+
+    &__list {
+        display: flex;
+        align-items: center;
+
+        a,
+        div {
+            font-weight: 300;
+            font-size: 12px;
+            color: #7c7c7c;
+
+            &::after {
+                content: '/';
+                display: inline-block;
+                margin: 0 7px;
+            }
+
+            &:last-child {
+                &::after {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.article {
+    margin-bottom: $sectionMB;
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 42px;
+
+        & > div {
+            display: flex;
+            align-items: center;
+        }
+
+        .rating {
+            margin-right: 33px;
+        }
+    }
+
+    &__share {
+        font-size: 16px;
+
+        svg {
+            font-size: 18px;
+        }
+    }
+}
+
+.comments {
+    &__card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 25px 30px;
+        margin-top: 26px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &-answer {
+            margin-top: 16px;
+            margin-left: 60px;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: -11px;
+                left: 30px;
+                width: 34px;
+                height: 19px;
+                background: url(../img/icons/comment-arrow.svg) no-repeat center;
+                background-size: contain;
+            }
+        }
+    }
+
+    &__top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .rating {
+        margin-right: 0;
+    }
+
+    &__date {
+        font-weight: 300;
+        font-size: 14px;
+        color: #a6a6a6;
+        margin-right: 13px;
+    }
+
+    &__text {
+        margin-bottom: 28px;
+        font-size: 16px;
+        line-height: 1.62;
+        font-weight: 300;
     }
 }

@@ -27,14 +27,14 @@
                     </div>
                     <div class="header__social">
                         <div>
-                            <a href="javascript:void(0)"><svg class="icon" fill="#1CCE79"><use xlink:href="img/symbol-defs.svg#icon-whatsapp"></use></svg></a>
-                            <a href="javascript:void(0)"><svg class="icon" fill="#00A3FF"><use xlink:href="img/symbol-defs.svg#icon-telegram"></use></svg></a>
-                            <a href="javascript:void(0)"><svg class="icon" fill="#8932E0"><use xlink:href="img/symbol-defs.svg#icon-viber"></use></svg></a>
+                            <a href="javascript:void(0)" data-modal="message"><svg class="icon" fill="#1CCE79"><use xlink:href="img/symbol-defs.svg#icon-whatsapp"></use></svg></a>
+                            <a href="javascript:void(0)" data-modal="message"><svg class="icon" fill="#00A3FF"><use xlink:href="img/symbol-defs.svg#icon-telegram"></use></svg></a>
+                            <a href="javascript:void(0)" data-modal="message"><svg class="icon" fill="#8932E0"><use xlink:href="img/symbol-defs.svg#icon-viber"></use></svg></a>
                         </div>
                         <div>
-                            <a href="javascript:void(0)"><svg class="icon" fill="#0077FF"><use xlink:href="img/symbol-defs.svg#icon-vk"></use></svg></a>
-                            <a href="javascript:void(0)"><svg class="icon" fill="#FF6B00"><use xlink:href="img/symbol-defs.svg#icon-ok"></use></svg></a>
-                            <a href="javascript:void(0)"><svg class="icon" fill="#FF0000"><use xlink:href="img/symbol-defs.svg#icon-youtube"></use></svg></a>
+                            <a href="javascript:void(0)" data-modal="message"><svg class="icon" fill="#0077FF"><use xlink:href="img/symbol-defs.svg#icon-vk"></use></svg></a>
+                            <a href="javascript:void(0)" data-modal="message"><svg class="icon" fill="#FF6B00"><use xlink:href="img/symbol-defs.svg#icon-ok"></use></svg></a>
+                            <a href="javascript:void(0)" data-modal="message"><svg class="icon" fill="#FF0000"><use xlink:href="img/symbol-defs.svg#icon-youtube"></use></svg></a>
                         </div>
                     </div>
                     <button class="header__call btn btn-blue btn-outline">заказать звонок</button>
@@ -60,6 +60,145 @@
 
 <div class="scrolltop">
     <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-arrow-top"></use></svg>
+</div>
+
+<div class="backdrop">
+    <div class="modal" data-modal="call">
+        <img src="img/ornament.svg" class="ornament" alt="">
+        <div class="modal__close">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.2288 15L29.7456 1.48318C30.0848 1.14406 30.0848 0.593482 29.7456 0.254358C29.4065 -0.0848283 28.8559 -0.0847651 28.5167 0.254422L15 13.7711L1.48328 0.254422C1.14409 -0.0847651 0.593514 -0.0848282 0.25439 0.254358C-0.0847968 0.593482 -0.0847968 1.14406 0.25439 1.48318L13.7712 15L0.25439 28.5168C-0.0847968 28.8559 -0.0847968 29.4065 0.25439 29.7456C0.593514 30.0848 1.14403 30.0848 1.48322 29.7456L15 16.2288L28.5168 29.7456C28.856 30.0848 29.4065 30.0848 29.7456 29.7456C30.0848 29.4065 30.0848 28.8559 29.7456 28.5168L16.2288 15Z" fill="black"/>
+            </svg>
+        </div>
+        <div class="modal__header" data-modal="call">Заказать звонок</div>
+        <div class="modal__subtitle">Оставьте заявку и мы свяжемся с вами в ближайшее время</div>
+
+        <form>
+            <div class="form-group">
+                <input type="text" placeholder="Имя*">
+                <input type="text" placeholder="Телефон*" class="phone-mask">
+            </div>
+            <button class="btn center" data-modal="thanks">Отправить заявку</button>
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox1">
+                <label for="checkbox1">Я даю свое согласие на обработку персональных данных <br>
+                    и соглашаюсь с условиями и <a href="javascript:">политикой конфиденциальности</a></label>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" data-modal="message">
+        <img src="img/ornament.svg" class="ornament" alt="">
+        <div class="modal__close">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.2288 15L29.7456 1.48318C30.0848 1.14406 30.0848 0.593482 29.7456 0.254358C29.4065 -0.0848283 28.8559 -0.0847651 28.5167 0.254422L15 13.7711L1.48328 0.254422C1.14409 -0.0847651 0.593514 -0.0848282 0.25439 0.254358C-0.0847968 0.593482 -0.0847968 1.14406 0.25439 1.48318L13.7712 15L0.25439 28.5168C-0.0847968 28.8559 -0.0847968 29.4065 0.25439 29.7456C0.593514 30.0848 1.14403 30.0848 1.48322 29.7456L15 16.2288L28.5168 29.7456C28.856 30.0848 29.4065 30.0848 29.7456 29.7456C30.0848 29.4065 30.0848 28.8559 29.7456 28.5168L16.2288 15Z" fill="black"/>
+            </svg>
+        </div>
+        <div class="modal__header" data-modal="call">Отправить сообщение</div>
+        <div class="modal__subtitle">Оставьте сообщениеи мы свяжемся с вами в ближайшее время</div>
+
+        <form>
+            <div class="form-group">
+                <div>
+                    <input type="text" placeholder="Имя*">
+                    <input type="text" placeholder="Телефон*" class="phone-mask">
+                    <input type="text" placeholder="E-mail*">
+                </div>
+                <div>
+                    <textarea placeholder="Текст сообщения"></textarea>
+                </div>
+            </div>
+            <button class="btn center" data-modal="thanks">Отправить сообщение</button>
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox2">
+                <label for="checkbox2">Я даю свое согласие на обработку персональных данных <br>
+                    и соглашаюсь с условиями и <a href="javascript:">политикой конфиденциальности</a></label>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" data-modal="review">
+        <div class="modal__close">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.2288 15L29.7456 1.48318C30.0848 1.14406 30.0848 0.593482 29.7456 0.254358C29.4065 -0.0848283 28.8559 -0.0847651 28.5167 0.254422L15 13.7711L1.48328 0.254422C1.14409 -0.0847651 0.593514 -0.0848282 0.25439 0.254358C-0.0847968 0.593482 -0.0847968 1.14406 0.25439 1.48318L13.7712 15L0.25439 28.5168C-0.0847968 28.8559 -0.0847968 29.4065 0.25439 29.7456C0.593514 30.0848 1.14403 30.0848 1.48322 29.7456L15 16.2288L28.5168 29.7456C28.856 30.0848 29.4065 30.0848 29.7456 29.7456C30.0848 29.4065 30.0848 28.8559 29.7456 28.5168L16.2288 15Z" fill="black"/>
+            </svg>
+        </div>
+        
+        <div class="reviews__card">
+            <div class="reviews__title">отзыв на тур</div>
+            <a href="javascript:" class="reviews__link">Древнее путешествие в Ингушетию, новогодняя программа</a>
+            <div class="reviews__author">
+                <div class="reviews__author-img">
+                    <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-login"></use></svg>
+                </div>
+                <div class="reviews__author-ionfo">
+                    <div class="reviews__author-name">Константин Константинопольский</div>
+                    <div class="reviews__author-text">36 лет, металлопрокатчик</div>
+                </div>
+            </div>
+            <div class="rating disabled">
+                <form>
+                    <fieldset>
+                        <span class="star-cb-group">
+                            <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
+                            <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4</label>
+                            <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
+                            <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
+                            <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
+                        </span>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="reviews__text">
+                Наступает пора отпусков, и очень хочется поскорее очутиться на море. 
+                Правда не знаю, получиться ли у меня в этом году выехать за границу, но
+                надежда умирает последней, а пока, приходится довольствоваться своими 
+                фотографиями, привезёнными ранее с отдыха. Наступает пора отпусков, 
+                и очень хочется поскорее очутиться на море. Правда не знаю, получиться 
+                ли у меня в этом году выехать за границу, но надежда умирает последней, 
+                а пока, приходится довольствоваться своими. <br><br>
+
+                Наступает пора отпусков, и очень хочется поскорее очутиться на море. 
+                Правда не знаю, получиться ли у меня в этом году выехать за границу, но
+                надежда умирает последней, а пока, приходится довольствоваться своими 
+                фотографиями, привезёнными ранее с отдыха. 
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" data-modal="review-full">
+        <div class="modal__close">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.2288 15L29.7456 1.48318C30.0848 1.14406 30.0848 0.593482 29.7456 0.254358C29.4065 -0.0848283 28.8559 -0.0847651 28.5167 0.254422L15 13.7711L1.48328 0.254422C1.14409 -0.0847651 0.593514 -0.0848282 0.25439 0.254358C-0.0847968 0.593482 -0.0847968 1.14406 0.25439 1.48318L13.7712 15L0.25439 28.5168C-0.0847968 28.8559 -0.0847968 29.4065 0.25439 29.7456C0.593514 30.0848 1.14403 30.0848 1.48322 29.7456L15 16.2288L28.5168 29.7456C28.856 30.0848 29.4065 30.0848 29.7456 29.7456C30.0848 29.4065 30.0848 28.8559 29.7456 28.5168L16.2288 15Z" fill="black"/>
+            </svg>
+        </div>
+        
+        <div class="review">
+            <img src="img/chat-full.jpg" width="347" alt="">
+
+            <div class="review__info">
+                <div class="review__title">отзыв на тур</div>
+                <a href="javascript:" class="review__link">Древнее путешествие в Ингушетию, <br>
+                    новогодняя программа</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" data-modal="thanks">
+        <div class="modal__close">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.2288 15L29.7456 1.48318C30.0848 1.14406 30.0848 0.593482 29.7456 0.254358C29.4065 -0.0848283 28.8559 -0.0847651 28.5167 0.254422L15 13.7711L1.48328 0.254422C1.14409 -0.0847651 0.593514 -0.0848282 0.25439 0.254358C-0.0847968 0.593482 -0.0847968 1.14406 0.25439 1.48318L13.7712 15L0.25439 28.5168C-0.0847968 28.8559 -0.0847968 29.4065 0.25439 29.7456C0.593514 30.0848 1.14403 30.0848 1.48322 29.7456L15 16.2288L28.5168 29.7456C28.856 30.0848 29.4065 30.0848 29.7456 29.7456C30.0848 29.4065 30.0848 28.8559 29.7456 28.5168L16.2288 15Z" fill="black"/>
+            </svg>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35">
+            <path class="circle" d="M33.5,16v1.47A16,16,0,1,1,24,2.89"/>
+            <path class="arrow" d="M33.5,4.71l-16,16-4.8-4.8"/>
+        </svg>
+        
+        <div class="modal__header" data-modal="call">Спасибо!</div>
+        <div class="modal__text">Ваше сообщение отправлено. <br>
+            Мы свяжемся с вами в ближайшее время</div>
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

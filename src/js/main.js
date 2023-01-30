@@ -144,6 +144,7 @@ $('body').on('click', '[data-modal]:not(.modal)', (e) => {
     if (!$('.backdrop').hasClass('active')) $('.backdrop').addClass('active');
     $('.modal.active').removeClass('active');
     $(`.modal[data-modal="${$(e.currentTarget).attr('data-modal')}"]`).addClass('active');
+    $('html, body').toggleClass('overflow');
 
     if ($(e.currentTarget).attr('data-modal') === 'thanks') {
         setTimeout(() => {
@@ -156,10 +157,14 @@ $('body').on('click', '[data-modal]:not(.modal)', (e) => {
 let closeModal = () => {
     $('.backdrop').removeClass('active');
     $('.modal').removeClass('active');
+    $('.hamburger').removeClass('active');
+    $('.menu').removeClass('active');
     $('.modal').find('svg').removeClass('animate');
+    $('html, body').removeClass('overflow');
 };
 
 $('body').on('click', '.modal__close, .modal .close', closeModal);
+$('body').on('click', '.mobile-sidebar .close', closeModal);
 
 $('body').on('click', '.backdrop', (e) => {
     if ($(e.target)[0].className === 'backdrop active') closeModal();
@@ -168,6 +173,10 @@ $('body').on('click', '.backdrop', (e) => {
 // close modal on press ESC
 $(document).keyup((e) => {
     if (e.keyCode === 27 && $('.backdrop').hasClass('active')) closeModal();
+});
+
+$('body').on('submit', 'form', (e) => {
+    e.preventDefault();
 });
 
 // tabs .bar animation
