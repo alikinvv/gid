@@ -232,3 +232,21 @@ $(window).on('scroll', () => {
 $('body').on('click', '.scrolltop', () => {
     $('html, body').animate({ scrollTop: 0 }, 500);
 });
+
+$('body').on('click', '.scrollto', (e) => {
+    e.preventDefault();
+    let target = $(e.currentTarget).attr('data-scrollto');
+    $('html, body').animate({ scrollTop: $(target).offset().top - 100 }, 500);
+});
+
+$('body').on('click', '.items .btn', (e) => {
+    e.preventDefault();
+    $(e.currentTarget).hide();
+    $(e.currentTarget).prev().slideDown().css('display', 'flex');
+});
+
+$('body').on('click', '.program__toggle', (e) => {
+    e.preventDefault();
+    $(e.currentTarget).toggleClass('active');
+    $(e.currentTarget).next().slideToggle().toggleClass('active');
+});

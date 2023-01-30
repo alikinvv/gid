@@ -18,7 +18,7 @@
             узнайте подробнее о 40 башенных комплексах <br />
             в горной части республики Ингушетия
         </div>
-        <button class="btn">
+        <button class="btn scrollto" data-scrollto=".comments">
             Начать путешествие <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-arrow-down"></use></svg>
         </button>
     </div>
@@ -68,7 +68,7 @@
     </div>
 </section>
 
-<section class="comments green">
+<section class="comments bottom green">
     <div class="container">
         <h2>Отзывы <sup>39</sup></h2>
 
@@ -220,6 +220,55 @@
                 надежда умирает последней, а пока, приходится довольствоваться своими фотографиями, привезёнными ранее с отдыха моря.
             </div>
             <a href="javascript:">Ответить</a>
+        </div>
+
+        <div class="pagination">
+            <a href="javascript:" class="pagination__arrow">назад</a>
+            <a href="javascript:" class="pagination__item">1</a>
+            <a href="javascript:" class="pagination__item">2</a>
+            <a href="javascript:" class="pagination__item">3</a>
+            <a href="javascript:" class="pagination__item active">4</a>
+            <a href="javascript:" class="pagination__item">5</a>
+            <a href="javascript:" class="pagination__item">6</a>
+            <a href="javascript:" class="pagination__item">...</a>
+            <a href="javascript:" class="pagination__arrow">дальше</a>
+        </div>
+    </div>
+</section>
+
+<section class="form">
+    <div class="container">
+        <h2>Добавить отзыв</h2>
+
+        <div class="form__body">
+            <div>
+                <input type="text" placeholder="Имя*" />
+                <input type="text" placeholder="E-mail*" />
+                <div class="rating rating-input">
+                    <form>
+                        <fieldset>
+                            <span class="star-cb-group">
+                                <input type="radio" id="rating-15" name="rating" value="5" /><label for="rating-15">5</label>
+                                <input type="radio" id="rating-14" name="rating" value="4" /><label for="rating-14">4</label>
+                                <input type="radio" id="rating-13" name="rating" value="3" /><label for="rating-13">3</label>
+                                <input type="radio" id="rating-12" name="rating" value="2" /><label for="rating-12">2</label>
+                                <input type="radio" id="rating-11" name="rating" value="1" /><label for="rating-11">1</label>
+                            </span>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <textarea placeholder="Текст отзыва*"></textarea>
+        </div>
+        <div class="form__bottom">
+            <div class="checkbox green">
+                <input type="checkbox" checked id="checkbox1" />
+                <label for="checkbox1"
+                    >Я даю свое согласие на обработку персональных данных и соглашаюсь с условиями и
+                    <a href="javascript:">политикой конфиденциальности</a></label
+                >
+            </div>
+            <button class="btn">Отправить</button>
         </div>
     </div>
 </section>

@@ -216,3 +216,20 @@ $('body').on('click', '.scrolltop', function () {
     scrollTop: 0
   }, 500);
 });
+$('body').on('click', '.scrollto', function (e) {
+  e.preventDefault();
+  var target = $(e.currentTarget).attr('data-scrollto');
+  $('html, body').animate({
+    scrollTop: $(target).offset().top - 100
+  }, 500);
+});
+$('body').on('click', '.items .btn', function (e) {
+  e.preventDefault();
+  $(e.currentTarget).hide();
+  $(e.currentTarget).prev().slideDown().css('display', 'flex');
+});
+$('body').on('click', '.program__toggle', function (e) {
+  e.preventDefault();
+  $(e.currentTarget).toggleClass('active');
+  $(e.currentTarget).next().slideToggle().toggleClass('active');
+});
