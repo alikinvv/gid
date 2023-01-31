@@ -235,7 +235,11 @@ $('body').on('click', '.footer__menu a', function (e) {
 });
 $('.scrolltop').css('left', $('.container').offset().left + $('.container').outerWidth() + 50);
 $(window).on('resize', function () {
-  $('.scrolltop').css('left', $('.container').offset().left + $('.container').outerWidth() + 50);
+  if ($(window).width() < 1366) {
+    $('.scrolltop').css('left', $('.container').offset().left + $('.container').outerWidth() + 10);
+  } else {
+    $('.scrolltop').css('left', $('.container').offset().left + $('.container').outerWidth() + 50);
+  }
 });
 $(window).on('scroll', function () {
   if ($(window).scrollTop() > 100) $('.scrolltop').addClass('active');else $('.scrolltop').removeClass('active');

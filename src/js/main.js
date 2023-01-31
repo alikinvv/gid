@@ -252,7 +252,11 @@ $('body').on('click', '.footer__menu a', (e) => {
 $('.scrolltop').css('left', $('.container').offset().left + $('.container').outerWidth() + 50);
 
 $(window).on('resize', () => {
-    $('.scrolltop').css('left', $('.container').offset().left + $('.container').outerWidth() + 50);
+    if ($(window).width() < 1366) {
+        $('.scrolltop').css('left', $('.container').offset().left + $('.container').outerWidth() + 10);
+    } else {
+        $('.scrolltop').css('left', $('.container').offset().left + $('.container').outerWidth() + 50);
+    }
 });
 
 $(window).on('scroll', () => {

@@ -431,7 +431,7 @@ blockquote {
 }
 
 .container {
-    @include r(1139) {
+    @include r(1155) {
         padding: 0 15px;
     }
 
@@ -1344,6 +1344,12 @@ blockquote {
 
         &-bottom {
             padding-bottom: 0;
+            overflow: hidden;
+
+            .zoom {
+                position: relative;
+                top: 6px;
+            }
         }
     }
 
@@ -1483,6 +1489,7 @@ blockquote {
 
 .gallery {
     margin-bottom: $sectionMB;
+    overflow: hidden;
 
     h2 {
         margin-bottom: 40px;
@@ -1900,6 +1907,10 @@ blockquote {
 }
 
 .scrolltop {
+    @include r(1270) {
+        display: none;
+    }
+
     position: fixed;
     bottom: 20px;
     right: 0;
@@ -2291,6 +2302,10 @@ blockquote {
 
 .form {
     margin-bottom: $sectionMB;
+
+    &.gray .container {
+        background: url(../img/texture.png) repeat center #f1f1f1;
+    }
 
     .container {
         border-radius: 28px;
@@ -2850,6 +2865,72 @@ blockquote {
             transform: translate(-50%, -50%) scale(0);
             opacity: 0;
             transition: $trans;
+        }
+    }
+}
+
+.contacts {
+    margin-bottom: $sectionMB;
+
+    &__list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 70px;
+
+        & > a,
+        & > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: inherit;
+            text-decoration: none;
+            transition: $trans;
+
+            & > svg {
+                font-size: 20px;
+                margin-bottom: 10px;
+                fill: #b8b8b8;
+                transition: $trans;
+            }
+        }
+
+        & > a:hover {
+            color: $blue;
+
+            svg {
+                fill: $blue;
+            }
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        span {
+            font-weight: 300;
+            font-size: 14px;
+            color: #9c9c9c;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .header__social {
+            & > div {
+                margin: 0;
+                display: flex;
+                align-items: center;
+            }
+
+            svg {
+                font-size: 36px;
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
 }
