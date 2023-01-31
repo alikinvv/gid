@@ -36,6 +36,10 @@ img {
     max-width: 100%;
 }
 
+.mb0 {
+    margin-bottom: 0 !important;
+}
+
 ol {
     margin: 0;
     padding-left: 20px;
@@ -1061,7 +1065,7 @@ blockquote {
             font-size: 13px;
             border-radius: 10px;
             margin-right: 7px;
-            padding: 6px 12px;
+            padding: 6px 8px;
 
             &.red {
                 color: #7d5131;
@@ -1986,14 +1990,14 @@ blockquote {
     &__wrapper {
         display: flex;
         align-items: flex-start;
+        justify-content: space-between;
 
         & > div {
-            width: 100%;
+            width: 74%;
 
             &:last-child {
-                width: 267px;
+                width: 24%;
                 flex-shrink: 0;
-                margin-left: 24px;
             }
         }
     }
@@ -2247,6 +2251,10 @@ blockquote {
     justify-content: center;
     margin-top: 46px;
 
+    & + .form {
+        margin-top: 55px;
+    }
+
     a {
         color: inherit;
         text-decoration: none;
@@ -2395,6 +2403,7 @@ blockquote {
         position: relative;
         position: relative;
         z-index: 2;
+        min-height: 67px;
 
         &::before {
             content: '';
@@ -2449,6 +2458,18 @@ blockquote {
                 background: darken(#d5f0d1, 10%);
             }
         }
+
+        &.gray {
+            background: url(../img/texture.png) repeat center #efefef;
+
+            &:hover {
+                background: url(../img/texture.png) repeat center darken(#efefef, 10%);
+            }
+
+            &.active {
+                background: url(../img/texture.png) repeat center darken(#efefef, 10%);
+            }
+        }
     }
 
     &__day {
@@ -2462,7 +2483,6 @@ blockquote {
         color: #71976b;
         background: #d5f0d1;
         border-radius: 10px;
-        margin-right: 25px;
         transition: $trans;
     }
 
@@ -2471,10 +2491,11 @@ blockquote {
         font-size: 19px;
         color: #292929;
         padding-right: 40px;
+        margin-left: 25px;
     }
 
     &__body {
-        padding: 24px 39px 24px 112px;
+        padding: 34px 39px 24px 112px;
         background: #f2f9f1;
         border-radius: 0 0 10px 10px;
         display: none;
@@ -2489,6 +2510,19 @@ blockquote {
 
         &.active {
             display: block;
+        }
+
+        & + h2 {
+            margin-top: 55px;
+        }
+
+        &.gray {
+            background: #efefef;
+            padding-left: 25px;
+
+            .program__gallery > div:first-child {
+                width: 353px;
+            }
         }
     }
 
@@ -2507,6 +2541,10 @@ blockquote {
                 width: 320px;
                 flex-shrink: 0;
                 margin-right: 22px;
+
+                img {
+                    width: 100%;
+                }
             }
 
             &:last-child {
@@ -2752,5 +2790,66 @@ blockquote {
         text-align: center;
         justify-content: center;
         margin-bottom: 0;
+    }
+}
+
+.thumbs {
+    position: relative;
+    margin-bottom: 85px;
+
+    .swiper-pagination {
+        bottom: -33px;
+    }
+
+    &__item {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding-bottom: 100%;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-bottom: 6px;
+
+        &:hover {
+            .zoom__btn {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background: linear-gradient(178.95deg, #000000 -35.58%, rgba(0, 0, 0, 0) 56.25%);
+            border-radius: 3px;
+            transform: matrix(1, 0, 0, -1, 0, 0);
+        }
+
+        span {
+            position: absolute;
+            bottom: 27px;
+            left: 22px;
+            right: 22px;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 1.27;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .zoom__btn {
+            top: 50%;
+            left: 50%;
+            right: initial;
+            bottom: initial;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: $trans;
+        }
     }
 }

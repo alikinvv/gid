@@ -67,14 +67,30 @@ var gid = new Swiper('.gid .swiper-container', {
     }
   }
 });
-var popular = new Swiper('.popular .swiper-container', {
+var popular = new Swiper('.popular:not(.padding) .swiper-container', {
   slidesPerView: 2,
   slidesPerGroup: 2,
   spaceBetween: 94,
   loop: true,
   navigation: {
-    nextEl: '.popular .swiper-button-next',
-    prevEl: '.popular .swiper-button-prev'
+    nextEl: '.popular:not(.padding) .swiper-button-next',
+    prevEl: '.popular:not(.padding) .swiper-button-prev'
+  },
+  on: {
+    afterInit: function afterInit() {
+      $('.gid__title').matchHeight();
+      $('.gid__text').matchHeight();
+    }
+  }
+});
+var popularPadding = new Swiper('.popular.padding .swiper-container', {
+  slidesPerView: 2,
+  slidesPerGroup: 2,
+  spaceBetween: 30,
+  loop: true,
+  navigation: {
+    nextEl: '.popular.padding .swiper-button-next',
+    prevEl: '.popular.padding .swiper-button-prev'
   },
   on: {
     afterInit: function afterInit() {
@@ -130,6 +146,19 @@ var blog = new Swiper('.blog .swiper-container', {
       $('.blog__text').matchHeight();
       $('.blog__card').matchHeight();
     }
+  }
+});
+var thumbs = new Swiper('.thumbs .swiper-container', {
+  slidesPerView: 3,
+  slidesPerGroup: 3,
+  spaceBetween: 6,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
+  pagination: {
+    el: '.thumbs .swiper-pagination'
   }
 });
 
