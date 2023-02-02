@@ -285,3 +285,202 @@ $('body').on('click', '.program__toggle', (e) => {
     $(e.currentTarget).toggleClass('active');
     $(e.currentTarget).next().slideToggle().toggleClass('active');
 });
+
+function calculateTotalValue(length) {
+    var minutes = Math.floor(length / 60),
+        seconds_int = length - minutes * 60,
+        seconds_str = seconds_int.toString(),
+        seconds = seconds_str.substr(0, 2),
+        time = minutes + ':' + seconds;
+
+    return time;
+}
+
+function calculateCurrentValue(currentTime) {
+    var current_hour = parseInt(currentTime / 3600) % 24,
+        current_minute = parseInt(currentTime / 60) % 60,
+        current_seconds_long = currentTime % 60,
+        current_seconds = current_seconds_long.toFixed(),
+        current_time = (current_minute < 10 ? '0' + current_minute : current_minute) + ':' + (current_seconds < 10 ? '0' + current_seconds : current_seconds);
+
+    return current_time;
+}
+
+function initProgressBar() {
+    var player = document.getElementById('player');
+    var length = player.duration;
+    var current_time = player.currentTime;
+
+    console.log(player.duration);
+    $('.start-time').html(calculateCurrentValue(current_time));
+    $('.end-time').html(calculateTotalValue(length));
+
+    var progressbar = document.getElementById('seekObj');
+    progressbar.value = player.currentTime / player.duration;
+    progressbar.addEventListener('click', seek);
+
+    if (player.currentTime == player.duration) {
+        $('#play-btn').removeClass('pause');
+    }
+
+    function seek(evt) {
+        var percent = evt.offsetX / this.offsetWidth;
+        player.currentTime = percent * player.duration;
+        progressbar.value = percent / 100;
+    }
+}
+
+function initPlayers(num) {
+    // pass num in if there are multiple audio players e.g 'player' + i
+
+    for (var i = 0; i < num; i++) {
+        (function () {
+            // Variables
+            // ----------------------------------------------------------
+            // audio embed object
+            var playerContainer = document.getElementById('player-container'),
+                player = document.getElementById('player'),
+                isPlaying = false,
+                playBtn = document.getElementById('play-btn');
+
+            // Controls Listeners
+            // ----------------------------------------------------------
+            if (playBtn != null) {
+                playBtn.addEventListener('click', function () {
+                    togglePlay();
+                });
+            }
+
+            // Controls & Sounds Methods
+            // ----------------------------------------------------------
+            function togglePlay() {
+                if (player.paused === false) {
+                    player.pause();
+                    isPlaying = false;
+                    $('#play-btn').removeClass('pause');
+                } else {
+                    player.play();
+                    $('#play-btn').addClass('pause');
+                    isPlaying = true;
+                }
+            }
+        })();
+    }
+}
+
+initPlayers($('#player-container').length);
+
+document.getElementById('player').addEventListener('loadedmetadata', function (_event) {
+    var player = document.getElementById('player');
+    var length = player.duration;
+    var current_time = player.currentTime;
+
+    $('.start-time').html(calculateCurrentValue(current_time));
+    $('.end-time').html(calculateTotalValue(length));
+});
+
+ymaps.ready(init);
+
+function init() {
+    var myMap = new ymaps.Map(
+            'map',
+            {
+                center: [55.76, 37.64],
+                zoom: 10,
+            },
+            {
+                searchControlProvider: 'yandex#search',
+            }
+        ),
+        objectManager = new ymaps.ObjectManager({
+            geoObjectOpenBalloonOnClick: false,
+            clusterOpenBalloonOnClick: false,
+        });
+
+    objectManager.objects.options.set({
+        iconLayout: 'default#imageWithContent',
+        iconImageHref: 'img/icons/point.svg',
+        iconImageSize: [33, 37],
+        iconImageOffset: [-5, -38],
+        iconContentOffset: [11, 10],
+    });
+    myMap.geoObjects.add(objectManager);
+
+    $.ajax({
+        url: 'js/objects.json',
+    }).done(function (data) {
+        objectManager.add(data);
+    });
+
+    function onObjectEvent(e) {
+        var objectId = e.get('objectId');
+        if (e.get('type') == 'mousedown') {
+            $('.guide__item.active').removeClass('active');
+            $('.guide__item[data-id="' + objectId + '"]').addClass('active');
+
+            myMap.setCenter(
+                [
+                    Number(
+                        $('.guide__item[data-id="' + objectId + '"]')
+                            .attr('data-coordinate')
+                            .match(/(.*), (.*)/)[1]
+                    ),
+                    Number(
+                        $('.guide__item[data-id="' + objectId + '"]')
+                            .attr('data-coordinate')
+                            .match(/(.*), (.*)/)[2]
+                    ),
+                ],
+                14
+            );
+        }
+    }
+
+    objectManager.objects.events.add(['mousedown', 'mouseup'], onObjectEvent);
+
+    $('body').on('click', '.guide-next', (e) => {
+        e.preventDefault();
+        let current = $('.guide__item.active');
+        let next = current.next();
+        if (next.length > 0) {
+            current.removeClass('active');
+            next.addClass('active');
+            myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+        }
+    });
+
+    $('body').on('click', '.guide-prev', (e) => {
+        e.preventDefault();
+        let current = $('.guide__item.active');
+        let prev = current.prev();
+        if (prev.length > 0) {
+            current.removeClass('active');
+            prev.addClass('active');
+            myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+        }
+    });
+
+    $('body').on('click', '.guide__item', (e) => {
+        e.preventDefault();
+        let target = $(e.currentTarget).attr('data-target');
+        $('.guide__item.active').removeClass('active');
+        $(e.currentTarget).addClass('active');
+        $('.guide__content.active').removeClass('active');
+        $(target).addClass('active');
+        myMap.setCenter(
+            [
+                Number(
+                    $(e.currentTarget)
+                        .attr('data-coordinate')
+                        .match(/(.*), (.*)/)[1]
+                ),
+                Number(
+                    $(e.currentTarget)
+                        .attr('data-coordinate')
+                        .match(/(.*), (.*)/)[2]
+                ),
+            ],
+            14
+        );
+    });
+}
