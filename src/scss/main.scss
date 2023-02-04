@@ -20,6 +20,10 @@ body {
     font-weight: 400;
     line-height: 1.44;
     color: #292929;
+
+    &.overflow {
+        overflow: hidden;
+    }
 }
 
 * {
@@ -49,6 +53,10 @@ ol {
     }
 
     li {
+        @include r(1023) {
+            font-size: 16px;
+        }
+
         font-weight: 300;
         font-size: 18px;
         line-height: 2.22;
@@ -68,6 +76,10 @@ ul {
     }
 
     li {
+        @include r(1023) {
+            font-size: 16px;
+        }
+
         font-weight: 300;
         font-size: 18px;
         line-height: 2.22;
@@ -96,6 +108,10 @@ ul {
 
 h1,
 .h1 {
+    @include r(1023) {
+        font-size: 40px;
+    }
+
     font-weight: 800;
     font-size: 52px;
     line-height: 1.04;
@@ -104,6 +120,10 @@ h1,
 
 h2,
 .h2 {
+    @include r(1023) {
+        font-size: 33px;
+    }
+
     font-weight: 800;
     font-size: 38px;
     margin-bottom: 25px;
@@ -119,6 +139,10 @@ h2,
 
 h3,
 .h3 {
+    @include r(1023) {
+        font-size: 30px;
+    }
+
     font-weight: 800;
     font-size: 33px;
     margin-bottom: 20px;
@@ -134,6 +158,10 @@ h3,
 
 h4,
 .h4 {
+    @include r(1023) {
+        font-size: 20px;
+    }
+
     font-weight: 600;
     font-size: 22px;
     margin-bottom: 20px;
@@ -296,6 +324,14 @@ section {
 }
 
 blockquote {
+    @include r(1023) {
+        font-size: 16px;
+
+        br {
+            display: none;
+        }
+    }
+
     text-align: center;
     margin: 55px 0;
     padding: 30px;
@@ -474,7 +510,7 @@ blockquote {
         justify-content: space-between;
         align-items: center;
 
-        &:first-child {
+        &.top {
             margin-bottom: 18px;
         }
     }
@@ -484,6 +520,14 @@ blockquote {
         align-items: center;
 
         a {
+            @include r(767) {
+                width: 20px;
+                height: 20px;
+                color: transparent;
+                user-select: none;
+                margin-right: 10px !important;
+            }
+
             display: flex;
             align-items: center;
             font-size: 15px;
@@ -492,6 +536,10 @@ blockquote {
             text-decoration: none;
 
             &:hover {
+                @include r(767) {
+                    color: transparent;
+                }
+
                 color: $blue;
 
                 svg {
@@ -500,6 +548,10 @@ blockquote {
             }
 
             &:first-child {
+                @include r(1023) {
+                    margin-right: 15px;
+                }
+
                 margin-right: 49px;
             }
 
@@ -508,6 +560,7 @@ blockquote {
                 margin-right: 10px;
                 font-size: 20px;
                 transition: $trans;
+                flex-shrink: 0;
             }
         }
     }
@@ -517,6 +570,10 @@ blockquote {
         align-items: center;
 
         div {
+            @include r(1023) {
+                margin: 0;
+            }
+
             margin: 0 8px;
 
             a {
@@ -556,6 +613,30 @@ blockquote {
     }
 
     &__menu {
+        @include r(1023) {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: #fff;
+            z-index: 999;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 40px;
+            overflow: auto;
+            opacity: 0;
+            transition: $trans;
+            pointer-events: none;
+            user-select: none;
+
+            &.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -563,6 +644,11 @@ blockquote {
 
         & > div,
         & > a {
+            @include r(1023) {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
             font-size: 15px;
             font-weight: 600;
             transition: $trans;
@@ -577,6 +663,10 @@ blockquote {
         }
 
         & > div {
+            @include r(1023) {
+                display: block;
+            }
+
             display: flex;
             align-items: center;
 
@@ -588,7 +678,7 @@ blockquote {
                 .dropdown {
                     opacity: 1;
                     pointer-events: all;
-                    user-select: all;
+                    user-select: initial;
                 }
 
                 svg {
@@ -597,6 +687,10 @@ blockquote {
             }
 
             svg {
+                @include r(1023) {
+                    display: none;
+                }
+
                 font-size: 7px;
                 margin-left: 7px;
                 fill: $blue;
@@ -605,6 +699,13 @@ blockquote {
         }
 
         .dropdown {
+            @include r(1023) {
+                position: static;
+                transform: none;
+                opacity: 1;
+                padding: 0;
+            }
+
             position: absolute;
             left: 0;
             bottom: 0;
@@ -617,6 +718,13 @@ blockquote {
             transition: $trans;
 
             &__wrapper {
+                @include r(1023) {
+                    background: transparent;
+                    box-shadow: none;
+                    padding: 0;
+                    padding-left: 30px;
+                }
+
                 padding: 15px 22px;
                 background: #fff3e2;
                 box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.02);
@@ -624,6 +732,10 @@ blockquote {
                 position: relative;
 
                 &::before {
+                    @include r(1023) {
+                        display: none;
+                    }
+
                     content: '';
                     position: absolute;
                     top: -8px;
@@ -639,6 +751,11 @@ blockquote {
             }
 
             a {
+                @include r(1023) {
+                    font-size: 18px;
+                    display: block;
+                }
+
                 white-space: nowrap;
                 line-height: 2.4;
                 font-weight: 400;
@@ -651,11 +768,20 @@ blockquote {
     }
 
     &__search {
+        @include r(1023) {
+            margin-left: auto;
+            margin-right: 15px;
+        }
+
         margin-left: 75px;
         position: relative;
         padding-right: 5px;
 
         &.active input {
+            @include r(1023) {
+                width: 75vw;
+            }
+
             width: 387px;
             padding: 8px 9px;
             padding-right: 45px;
@@ -700,19 +826,70 @@ blockquote {
     }
 }
 
+.hamburger {
+    @include r(1023) {
+        display: block;
+    }
+
+    display: none;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    transition: $trans;
+
+    span {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #000;
+        transition: $trans;
+    }
+
+    span:nth-child(1) {
+        top: 0;
+    }
+
+    span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    span:nth-child(3) {
+        bottom: 0;
+    }
+
+    &.active {
+        position: fixed;
+        z-index: 9999;
+        right: 15px;
+        top: 63px;
+
+        span:nth-child(1) {
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        span:nth-child(2) {
+            opacity: 0;
+        }
+
+        span:nth-child(3) {
+            bottom: 50%;
+            transform: translateY(50%) rotate(-45deg);
+        }
+    }
+}
+
 .main {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 }
 
 .slider {
-    @include r(1279) {
-        padding: 0 50px;
-    }
-
-    @include r(1023) {
-        padding: 0;
-    }
-
     position: relative;
     overflow: hidden;
     margin-bottom: -45px;
@@ -725,6 +902,10 @@ blockquote {
         &-slide {
             @include r(1279) {
                 padding: 20px;
+            }
+
+            @include r(1023) {
+                height: 340px;
             }
 
             padding: 20px 70px;
@@ -774,6 +955,10 @@ blockquote {
     }
 
     &__text {
+        @include r(1023) {
+            margin-bottom: 30px;
+        }
+
         font-weight: 500;
         font-size: 18px;
         margin-bottom: 47px;
@@ -841,7 +1026,8 @@ blockquote {
         &-prev,
         &-next {
             @include r(1023) {
-                display: none;
+                height: 45px;
+                font-size: 30px;
             }
 
             width: 79px;
@@ -939,9 +1125,19 @@ blockquote {
 }
 
 .about {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     .container {
+        @include r(1023) {
+            flex-direction: column;
+            align-items: flex-start;
+            background: url(../img/texture.png) repeat center #e6f9e3;
+        }
+
         background: url(../img/about.png) no-repeat left top;
         background-size: contain;
         padding: 48px;
@@ -949,6 +1145,19 @@ blockquote {
         align-items: center;
 
         & > div {
+            @include r(1023) {
+                width: 100%;
+
+                &:first-child {
+                    order: 2;
+                }
+
+                &:last-child {
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+            }
+
             width: 50%;
         }
     }
@@ -1010,6 +1219,10 @@ blockquote {
 }
 
 .gid {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     &__card {
@@ -1325,14 +1538,26 @@ blockquote {
 }
 
 .popular {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 }
 
 .tours {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 }
 
 .reviews {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     &__card {
@@ -1488,8 +1713,14 @@ blockquote {
 }
 
 .gallery {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
     overflow: hidden;
+    padding-top: 80px;
+    margin-top: -80px;
 
     h2 {
         margin-bottom: 40px;
@@ -1500,6 +1731,10 @@ blockquote {
     }
 
     .ornament {
+        @include r(1023) {
+            display: none;
+        }
+
         position: absolute;
         bottom: -7%;
         right: -24%;
@@ -1508,6 +1743,10 @@ blockquote {
     }
 
     &__wrapper {
+        @include r(1260) {
+            margin-bottom: 0;
+        }
+
         display: flex;
         @include flexlist(12px);
     }
@@ -1517,10 +1756,18 @@ blockquote {
         border-radius: 10px;
 
         &:nth-child(2) {
+            @include r(1260) {
+                margin-top: 0;
+            }
+
             margin-top: -70px;
         }
 
         &:nth-child(3) {
+            @include r(1260) {
+                margin-top: 0;
+            }
+
             margin-top: -140px;
         }
     }
@@ -1556,6 +1803,12 @@ blockquote {
     }
 
     &__text {
+        @include r(1023) {
+            font-size: 14px;
+            left: 15px;
+            bottom: 15px;
+        }
+
         position: absolute;
         bottom: 27px;
         left: 27px;
@@ -1574,6 +1827,10 @@ blockquote {
 }
 
 .blog {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     &__card {
@@ -1663,6 +1920,14 @@ blockquote {
 }
 
 .text {
+    @include r(1260) {
+        overflow: hidden;
+    }
+
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     p {
@@ -1698,6 +1963,10 @@ blockquote {
             position: relative;
 
             &:last-child::before {
+                @include r(1023) {
+                    left: -45px;
+                }
+
                 content: '';
                 position: absolute;
                 top: 0;
@@ -1711,6 +1980,10 @@ blockquote {
 }
 
 .history {
+    @include r(1023) {
+        flex-direction: column;
+    }
+
     display: flex;
     align-items: center;
     background: url(../img/texture.png) repeat center #ffefd8;
@@ -1720,13 +1993,28 @@ blockquote {
     overflow: hidden;
     margin-bottom: 55px;
 
+    div {
+        @include r(1023) {
+            order: 2;
+        }
+    }
+
     img {
+        @include r(1023) {
+            margin-left: 0;
+            margin-bottom: 20px;
+        }
+
         flex-shrink: 0;
         margin-left: 56px;
         z-index: 2;
     }
 
     .ornament {
+        @include r(1023) {
+            display: none;
+        }
+
         position: absolute;
         top: -50%;
         right: -10%;
@@ -1757,6 +2045,10 @@ blockquote {
     }
 
     &__num {
+        @include r(1023) {
+            margin-right: 20px;
+        }
+
         width: 60px;
         height: 60px;
         border-radius: 50%;
@@ -1796,12 +2088,24 @@ blockquote {
     }
 
     &__title {
+        @include r(1023) {
+            font-size: 18px;
+        }
+
         font-weight: 700;
         font-size: 20px;
         margin-bottom: 10px;
     }
 
     &__text {
+        @include r(1023) {
+            font-size: 15px;
+
+            br {
+                display: none;
+            }
+        }
+
         font-weight: 300;
         font-size: 16px;
         line-height: 1.44;
@@ -1820,6 +2124,10 @@ blockquote {
         display: flex;
 
         & > img {
+            @include r(1023) {
+                display: none;
+            }
+
             flex-shrink: 0;
             margin-right: 36px;
         }
@@ -1881,6 +2189,10 @@ blockquote {
 
         & > div {
             &:last-child {
+                @include r(1023) {
+                    font-size: 10px;
+                }
+
                 display: flex;
                 align-items: center;
                 text-align: right;
@@ -1996,6 +2308,10 @@ blockquote {
 }
 
 .article {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     &__wrapper {
@@ -2189,6 +2505,10 @@ blockquote {
 }
 
 .comments {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     &.green {
@@ -2301,6 +2621,10 @@ blockquote {
 }
 
 .form {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     &.gray .container {
@@ -2353,6 +2677,10 @@ blockquote {
 }
 
 .items {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     &__wrapper {
@@ -2405,6 +2733,10 @@ blockquote {
 }
 
 .program {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     &__toggle {
@@ -2870,6 +3202,10 @@ blockquote {
 }
 
 .contacts {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
 
     &__list {
@@ -2936,6 +3272,10 @@ blockquote {
 }
 
 .guide {
+    @include r(1023) {
+        margin-bottom: 60px;
+    }
+
     margin-bottom: $sectionMB;
     position: relative;
     z-index: 2;

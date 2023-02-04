@@ -54,13 +54,19 @@ let main = new Swiper('.main .swiper-container', {
 });
 
 let gid = new Swiper('.gid .swiper-container', {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
     spaceBetween: 24,
     loop: true,
     navigation: {
         nextEl: '.gid .swiper-button-next',
         prevEl: '.gid .swiper-button-prev',
+    },
+    breackpoints: {
+        1280: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+        },
     },
     on: {
         afterInit: function () {
@@ -73,11 +79,16 @@ let gid = new Swiper('.gid .swiper-container', {
 let popular = new Swiper('.popular:not(.padding) .swiper-container', {
     slidesPerView: 2,
     slidesPerGroup: 2,
-    spaceBetween: 94,
+    spaceBetween: 20,
     loop: true,
     navigation: {
         nextEl: '.popular:not(.padding) .swiper-button-next',
         prevEl: '.popular:not(.padding) .swiper-button-prev',
+    },
+    breackpoints: {
+        1280: {
+            spaceBetween: 94,
+        },
     },
     on: {
         afterInit: function () {
@@ -107,11 +118,16 @@ let popularPadding = new Swiper('.popular.padding .swiper-container', {
 let tours = new Swiper('.tours .swiper-container', {
     slidesPerView: 2,
     slidesPerGroup: 2,
-    spaceBetween: 94,
+    spaceBetween: 20,
     loop: true,
     navigation: {
         nextEl: '.tours .swiper-button-next',
         prevEl: '.tours .swiper-button-prev',
+    },
+    breackpoints: {
+        1280: {
+            spaceBetween: 94,
+        },
     },
     on: {
         afterInit: function () {
@@ -122,13 +138,19 @@ let tours = new Swiper('.tours .swiper-container', {
 });
 
 let reviews = new Swiper('.reviews .swiper-container', {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
     spaceBetween: 24,
     loop: true,
     navigation: {
         nextEl: '.reviews .swiper-button-next',
         prevEl: '.reviews .swiper-button-prev',
+    },
+    breackpoints: {
+        1280: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+        },
     },
     on: {
         afterInit: function () {
@@ -139,13 +161,19 @@ let reviews = new Swiper('.reviews .swiper-container', {
 });
 
 let blog = new Swiper('.blog .swiper-container', {
-    slidesPerView: 3,
-    slidesPerGroup: 3,
+    slidesPerView: 2,
+    slidesPerGroup: 2,
     spaceBetween: 24,
     loop: true,
     navigation: {
         nextEl: '.blog .swiper-button-next',
         prevEl: '.blog .swiper-button-prev',
+    },
+    breackpoints: {
+        1280: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+        },
     },
     on: {
         afterInit: function () {
@@ -370,16 +398,20 @@ function initPlayers(num) {
 
 initPlayers($('#player-container').length);
 
-document.getElementById('player').addEventListener('loadedmetadata', function (_event) {
-    var player = document.getElementById('player');
-    var length = player.duration;
-    var current_time = player.currentTime;
+if ($('#player-container').length) {
+    document.getElementById('player').addEventListener('loadedmetadata', function (_event) {
+        var player = document.getElementById('player');
+        var length = player.duration;
+        var current_time = player.currentTime;
 
-    $('.start-time').html(calculateCurrentValue(current_time));
-    $('.end-time').html(calculateTotalValue(length));
-});
+        $('.start-time').html(calculateCurrentValue(current_time));
+        $('.end-time').html(calculateTotalValue(length));
+    });
+}
 
-ymaps.ready(init);
+if ($('#map').length) {
+    ymaps.ready(init);
+}
 
 function init() {
     var myMap = new ymaps.Map(
@@ -484,3 +516,39 @@ function init() {
         );
     });
 }
+
+$('.hamburger').on('click', function () {
+    $(this).toggleClass('active');
+    $('.header__menu').toggleClass('active');
+    $('body').toggleClass('overflow');
+});
+
+let ww = $(window).width();
+
+let initTablet768 = () => {
+    if (ww >= 768 && ww <= 1023 && !$('body').hasClass('s-768')) {
+        $('body').addClass('s-768');
+        $('.header__row.bottom').prepend($('.header__row.top .header__contacts'));
+    } else if (ww >= 1024 && $('body').hasClass('s-768')) {
+        $('body').removeClass('s-768');
+        $('.header__row.top').prepend($('.header__row.bottom .header__contacts'));
+    }
+
+    if (ww <= 1023) {
+        if ($('body').hasClass('s-768') || $('body').hasClass('s-320')) {
+        }
+    } else {
+        // try {
+        //     swiperItemThree.destroy();
+        //     swiperRubricThree.destroy();
+        // } catch {}
+    }
+};
+
+initTablet768();
+
+$(window).on('resize', () => {
+    ww = $(window).width();
+
+    initTablet768();
+});
