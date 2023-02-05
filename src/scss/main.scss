@@ -104,7 +104,7 @@ ul {
             left: -30px;
             transform: translateY(-50%);
             width: 20px;
-            height: 0.1px;
+            height: 1px;
             background: #292929;
         }
     }
@@ -884,6 +884,7 @@ blockquote {
         margin-left: 75px;
         position: relative;
         padding-right: 5px;
+        flex-shrink: 0;
 
         &.active input {
             @include r(1023) {
@@ -891,7 +892,8 @@ blockquote {
             }
 
             @include r(767) {
-                width: 58vw;
+                width: 56vw;
+                padding: 16px 9px;
             }
 
             width: 387px;
@@ -900,6 +902,10 @@ blockquote {
         }
 
         input {
+            @include r(767) {
+                top: -13px;
+            }
+
             position: absolute;
             top: -6px;
             right: 0;
@@ -924,6 +930,7 @@ blockquote {
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
 
             &:hover svg {
                 fill: #000;
@@ -933,6 +940,7 @@ blockquote {
                 font-size: 20px;
                 fill: $blue;
                 transition: $trans;
+                flex-shrink: 0;
             }
         }
     }
@@ -1108,6 +1116,12 @@ blockquote {
 
     video {
         transition: none !important;
+        position: relative;
+        z-index: 1;
+    }
+
+    .play {
+        display: none;
     }
 }
 
