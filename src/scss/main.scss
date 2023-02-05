@@ -15,6 +15,10 @@ $sectionMB: 95px;
 }
 
 body {
+    @include r(767) {
+        font-size: 15px;
+    }
+
     font-family: 'Manrope', sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -57,6 +61,10 @@ ol {
             font-size: 16px;
         }
 
+        @include r(767) {
+            font-size: 14px;
+        }
+
         font-weight: 300;
         font-size: 18px;
         line-height: 2.22;
@@ -78,6 +86,10 @@ ul {
     li {
         @include r(1023) {
             font-size: 16px;
+        }
+
+        @include r(767) {
+            font-size: 14px;
         }
 
         font-weight: 300;
@@ -112,6 +124,10 @@ h1,
         font-size: 40px;
     }
 
+    @include r(767) {
+        font-size: 30px;
+    }
+
     font-weight: 800;
     font-size: 52px;
     line-height: 1.04;
@@ -122,6 +138,10 @@ h2,
 .h2 {
     @include r(1023) {
         font-size: 33px;
+    }
+
+    @include r(767) {
+        font-size: 27px;
     }
 
     font-weight: 800;
@@ -143,6 +163,10 @@ h3,
         font-size: 30px;
     }
 
+    @include r(767) {
+        font-size: 25px;
+    }
+
     font-weight: 800;
     font-size: 33px;
     margin-bottom: 20px;
@@ -160,6 +184,10 @@ h4,
 .h4 {
     @include r(1023) {
         font-size: 20px;
+    }
+
+    @include r(767) {
+        font-size: 18px;
     }
 
     font-weight: 600;
@@ -301,6 +329,10 @@ strong {
 
 section {
     &.orange {
+        @include r(767) {
+            padding: 60px 0;
+        }
+
         padding: 87px 0;
         background: url(../img/texture.png) repeat center #ffefd8;
 
@@ -318,6 +350,10 @@ section {
     }
 
     &.green {
+        @include r(767) {
+            padding: 60px 0;
+        }
+
         padding: 87px 0;
         background: url(../img/texture.png) repeat center #e6f9e3;
     }
@@ -368,6 +404,10 @@ blockquote {
 }
 
 .btn {
+    @include r(767) {
+        padding: 8px 16px;
+    }
+
     display: inline-flex;
     transition: $trans;
     text-decoration: none;
@@ -489,6 +529,10 @@ blockquote {
     }
 
     &__logo {
+        @include r(767) {
+            margin-right: 15px;
+        }
+
         margin-right: 37px;
         transition: $trans;
 
@@ -502,6 +546,12 @@ blockquote {
     }
 
     &__container {
+        @include r(767) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         width: 100%;
     }
 
@@ -511,7 +561,44 @@ blockquote {
         align-items: center;
 
         &.top {
+            @include r(767) {
+                display: flex;
+                align-items: center;
+                margin-bottom: 0;
+            }
+
             margin-bottom: 18px;
+        }
+    }
+
+    .header__contacts {
+        @include r(767) {
+            display: block;
+            order: 3;
+            margin-left: 5px;
+
+            a {
+                &:first-child {
+                    display: none;
+                }
+
+                &:last-child {
+                    width: 40px;
+                    height: 40px;
+                    color: transparent;
+
+                    &:hover {
+                        color: transparent;
+                    }
+
+                    svg {
+                        font-size: 25px;
+                        margin-right: 0;
+                        position: relative;
+                        left: 10px;
+                    }
+                }
+            }
         }
     }
 
@@ -520,14 +607,6 @@ blockquote {
         align-items: center;
 
         a {
-            @include r(767) {
-                width: 20px;
-                height: 20px;
-                color: transparent;
-                user-select: none;
-                margin-right: 10px !important;
-            }
-
             display: flex;
             align-items: center;
             font-size: 15px;
@@ -536,10 +615,6 @@ blockquote {
             text-decoration: none;
 
             &:hover {
-                @include r(767) {
-                    color: transparent;
-                }
-
                 color: $blue;
 
                 svg {
@@ -566,6 +641,10 @@ blockquote {
     }
 
     &__social {
+        @include r(767) {
+            display: none;
+        }
+
         display: flex;
         align-items: center;
 
@@ -589,10 +668,18 @@ blockquote {
     }
 
     &__call {
+        @include r(767) {
+            padding: 7px 15px;
+        }
+
         padding: 8px 15px;
     }
 
     &__lang {
+        @include r(767) {
+            display: none;
+        }
+
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -626,6 +713,7 @@ blockquote {
             align-items: flex-start;
             padding: 40px;
             overflow: auto;
+            -webkit-overflow-scrolling: touch;
             opacity: 0;
             transition: $trans;
             pointer-events: none;
@@ -635,6 +723,10 @@ blockquote {
                 opacity: 1;
                 pointer-events: auto;
             }
+        }
+
+        @include r(413) {
+            padding: 30px;
         }
 
         display: flex;
@@ -647,6 +739,10 @@ blockquote {
             @include r(1023) {
                 font-size: 24px;
                 margin-bottom: 10px;
+            }
+
+            @include r(767) {
+                font-size: 20px;
             }
 
             font-size: 15px;
@@ -725,6 +821,14 @@ blockquote {
                     padding-left: 30px;
                 }
 
+                @include r(767) {
+                    padding-left: 15px;
+                }
+
+                @include r(413) {
+                    padding-left: 0;
+                }
+
                 padding: 15px 22px;
                 background: #fff3e2;
                 box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.02);
@@ -756,6 +860,10 @@ blockquote {
                     display: block;
                 }
 
+                @include r(767) {
+                    font-size: 14px;
+                }
+
                 white-space: nowrap;
                 line-height: 2.4;
                 font-weight: 400;
@@ -780,6 +888,10 @@ blockquote {
         &.active input {
             @include r(1023) {
                 width: 75vw;
+            }
+
+            @include r(767) {
+                width: 58vw;
             }
 
             width: 387px;
@@ -860,6 +972,10 @@ blockquote {
     }
 
     &.active {
+        @include r(767) {
+            top: 32px;
+        }
+
         position: fixed;
         z-index: 9999;
         right: 15px;
@@ -941,6 +1057,11 @@ blockquote {
             }
 
             .btn {
+                @include r(767) {
+                    font-size: 16px;
+                    padding: 14px 30px;
+                }
+
                 padding: 19px 40px;
                 font-size: 17px;
                 position: relative;
@@ -950,6 +1071,12 @@ blockquote {
     }
 
     &__title {
+        @include r(767) {
+            br {
+                display: none;
+            }
+        }
+
         position: relative;
         z-index: 2;
     }
@@ -957,6 +1084,14 @@ blockquote {
     &__text {
         @include r(1023) {
             margin-bottom: 30px;
+        }
+
+        @include r(767) {
+            font-size: 16px;
+
+            br {
+                display: none;
+            }
         }
 
         font-weight: 500;
@@ -1030,6 +1165,13 @@ blockquote {
                 font-size: 30px;
             }
 
+            @include r(767) {
+                font-size: 25px;
+                height: 40px;
+                width: 30px;
+                border: 0;
+            }
+
             width: 79px;
             height: 52px;
             transition: all 0.1s linear;
@@ -1058,6 +1200,10 @@ blockquote {
         }
 
         &-prev {
+            @include r(1023) {
+                margin-right: 10px;
+            }
+
             margin-right: 15px;
         }
 
@@ -1136,6 +1282,7 @@ blockquote {
             flex-direction: column;
             align-items: flex-start;
             background: url(../img/texture.png) repeat center #e6f9e3;
+            padding: 48px 15px;
         }
 
         background: url(../img/about.png) no-repeat left top;
@@ -1163,6 +1310,10 @@ blockquote {
     }
 
     &__text {
+        @include r(767) {
+            font-size: 16px;
+        }
+
         font-size: 18px;
         line-height: 1.56;
         margin-bottom: 40px;
@@ -1259,6 +1410,11 @@ blockquote {
     }
 
     &__features {
+        @include r(1279) {
+            left: 15px;
+            right: 15px;
+        }
+
         position: absolute;
         left: 30px;
         display: flex;
@@ -1274,6 +1430,11 @@ blockquote {
         align-items: center;
 
         span {
+            @include r(1279) {
+                font-size: 10px;
+                padding: 6px 5px;
+            }
+
             font-weight: 600;
             font-size: 13px;
             border-radius: 10px;
@@ -1341,6 +1502,10 @@ blockquote {
     }
 
     &__info {
+        @include r(1279) {
+            padding: 35px 15px 40px;
+        }
+
         padding: 35px 30px 40px;
 
         .rating {
@@ -1402,6 +1567,10 @@ blockquote {
 }
 
 .more {
+    @include r(767) {
+        font-size: 16px;
+    }
+
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -1628,12 +1797,11 @@ blockquote {
         }
 
         &-name {
+            display: inline;
             font-weight: 800;
             font-size: 15px;
             line-height: 1.27;
             margin-bottom: 7px;
-            display: flex;
-            align-items: center;
 
             svg {
                 fill: $blue;
@@ -1736,7 +1904,7 @@ blockquote {
         }
 
         position: absolute;
-        bottom: -7%;
+        bottom: 20px;
         right: -24%;
         pointer-events: none;
         user-select: none;
@@ -1747,11 +1915,26 @@ blockquote {
             margin-bottom: 0;
         }
 
+        @include r(767) {
+            display: block;
+            margin: 0;
+        }
+
         display: flex;
         @include flexlist(12px);
     }
 
     &__col {
+        @include r(767) {
+            width: 100%;
+            @include flexlist(12px);
+            margin: 0;
+        }
+
+        @include r(413) {
+            @include flexlist(6px);
+        }
+
         @include flexitem(33.33%, 12px, 0);
         border-radius: 10px;
 
@@ -1773,6 +1956,14 @@ blockquote {
     }
 
     &__item {
+        @include r(767) {
+            @include flexitem(50%, 12px, 24px);
+        }
+
+        @include r(413) {
+            @include flexitem(50%, 6px, 12px);
+        }
+
         margin-bottom: 24px;
         border-radius: 10px;
         position: relative;
@@ -1823,6 +2014,12 @@ blockquote {
         transform: translate(-50%, -50%) scale(0);
         opacity: 0;
         transition: $trans;
+    }
+
+    .more {
+        @include r(767) {
+            display: none;
+        }
     }
 }
 
@@ -1949,6 +2146,10 @@ blockquote {
     }
 
     .cols {
+        @include r(757) {
+            display: block;
+        }
+
         display: flex;
         justify-content: space-between;
 
@@ -1958,6 +2159,10 @@ blockquote {
         }
 
         & > p {
+            @include r(757) {
+                width: 100%;
+            }
+
             width: 45%;
             display: block;
             position: relative;
@@ -1965,6 +2170,10 @@ blockquote {
             &:last-child::before {
                 @include r(1023) {
                     left: -45px;
+                }
+
+                @include r(757) {
+                    display: none;
                 }
 
                 content: '';
@@ -1982,6 +2191,10 @@ blockquote {
 .history {
     @include r(1023) {
         flex-direction: column;
+    }
+
+    @include r(757) {
+        padding: 40px 37px;
     }
 
     display: flex;
@@ -2026,6 +2239,11 @@ blockquote {
 
 .how {
     &__item {
+        @include r(757) {
+            align-items: flex-start;
+            padding: 20px 20px;
+        }
+
         background: #e5f8e2;
         border-radius: 10px;
         padding: 20px 37px;
@@ -2049,6 +2267,17 @@ blockquote {
             margin-right: 20px;
         }
 
+        @include r(757) {
+            width: auto;
+            height: auto;
+            font-size: 30px;
+            border: 0;
+            margin-right: 15px;
+            font-weight: bold;
+            position: relative;
+            top: -8px;
+        }
+
         width: 60px;
         height: 60px;
         border-radius: 50%;
@@ -2063,6 +2292,10 @@ blockquote {
         position: relative;
 
         &::before {
+            @include r(757) {
+                display: none;
+            }
+
             content: '';
             position: absolute;
             top: 0;
@@ -2075,6 +2308,11 @@ blockquote {
         }
 
         span {
+            @include r(757) {
+                width: auto;
+                height: auto;
+            }
+
             width: 58px;
             height: 58px;
             border-radius: 50%;
@@ -2092,6 +2330,10 @@ blockquote {
             font-size: 18px;
         }
 
+        @include r(757) {
+            font-size: 16px;
+        }
+
         font-weight: 700;
         font-size: 20px;
         margin-bottom: 10px;
@@ -2104,6 +2346,10 @@ blockquote {
             br {
                 display: none;
             }
+        }
+
+        @include r(757) {
+            font-size: 14px;
         }
 
         font-weight: 300;
@@ -2134,10 +2380,40 @@ blockquote {
     }
 
     &__contacts {
+        @include r(757) {
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
         display: flex;
         align-items: center;
 
+        .header__contacts {
+            @include r(757) {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                margin-bottom: 15px;
+
+                a {
+                    width: auto;
+                }
+            }
+
+            @include r(757) {
+                a {
+                    font-size: 14px;
+                }
+            }
+        }
+
         .header__social {
+            @include r(757) {
+                display: flex;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
             margin-left: auto;
             margin-right: 49px;
         }
@@ -2148,6 +2424,10 @@ blockquote {
     }
 
     &__menu {
+        @include r(757) {
+            display: none;
+        }
+
         display: flex;
         justify-content: space-between;
         margin-bottom: 14px;
@@ -2180,6 +2460,11 @@ blockquote {
     }
 
     &__bottom {
+        @include r(757) {
+            display: block;
+            margin-top: 15px;
+        }
+
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -2191,6 +2476,10 @@ blockquote {
             &:last-child {
                 @include r(1023) {
                     font-size: 10px;
+                }
+
+                @include r(757) {
+                    display: none;
                 }
 
                 display: flex;
@@ -2205,9 +2494,18 @@ blockquote {
     }
 
     &__submenu {
+        @include r(757) {
+            display: block;
+        }
+
         display: flex;
 
         a {
+            @include r(757) {
+                font-size: 10px;
+                margin-right: 7px;
+            }
+
             color: inherit;
             margin-right: 10px;
 
@@ -2261,6 +2559,15 @@ blockquote {
     margin-bottom: 38px;
 
     .container {
+        @include r(1155) {
+            padding: 34px 15px;
+            border-radius: 0;
+        }
+
+        @include r(1023) {
+            min-height: 300px;
+        }
+
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -2274,12 +2581,21 @@ blockquote {
     }
 
     .btn {
+        @include r(767) {
+            font-size: 16px;
+            padding: 14px 30px;
+        }
+
         padding: 19px 40px;
         font-size: 17px;
     }
 }
 
 .breadcrumbs {
+    @include r(767) {
+        display: none;
+    }
+
     margin-bottom: 21px;
 
     &__list {
@@ -2315,14 +2631,53 @@ blockquote {
     margin-bottom: $sectionMB;
 
     &__wrapper {
+        @include r(1023) {
+            display: flex;
+            flex-direction: column;
+        }
+
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
 
         & > div {
+            @include r(1279) {
+                width: 70%;
+            }
+
+            @include r(1023) {
+                width: 100%;
+                order: 2;
+            }
+
             width: 74%;
 
             &:last-child {
+                @include r(1279) {
+                    width: 28%;
+                }
+
+                @include r(1023) {
+                    order: 1;
+                    @include flexlist(12px);
+                    width: calc(100% + 24px);
+                    margin-bottom: 30px;
+
+                    & > div {
+                        @include r(767) {
+                            @include flexitem(100%, 1px, 15px);
+                        }
+
+                        @include flexitem(50%, 12px);
+                    }
+                }
+
+                @include r(767) {
+                    display: block;
+                    width: 100%;
+                    margin: 0;
+                }
+
                 width: 24%;
                 flex-shrink: 0;
             }
@@ -2333,6 +2688,10 @@ blockquote {
         margin-bottom: 55px;
 
         & > div {
+            @include r(1279) {
+                padding-left: 20px;
+            }
+
             border: 2px solid #eeeeee;
             margin-bottom: -2px;
             text-align: center;
@@ -2342,6 +2701,10 @@ blockquote {
             padding-left: 69px;
 
             &:first-child {
+                @include r(1279) {
+                    padding-left: 20px;
+                }
+
                 border-radius: 10px 10px 0px 0px;
                 background: #eeeeee;
                 font-weight: 600;
@@ -2368,6 +2731,10 @@ blockquote {
 
         &-horizontal {
             & > div {
+                @include r(767) {
+                    display: block;
+                }
+
                 display: flex;
                 text-align: left;
                 align-items: inherit;
@@ -2387,10 +2754,24 @@ blockquote {
                 }
 
                 & > div {
+                    @include r(1279) {
+                        padding-left: 20px;
+                    }
+
                     padding: 8px 0;
                     padding-left: 69px;
 
                     &:first-child {
+                        @include r(1279) {
+                            width: 250px;
+                        }
+
+                        @include r(767) {
+                            width: auto;
+                            padding-right: 10px;
+                            font-weight: bold;
+                        }
+
                         width: 300px;
                         flex-shrink: 0;
                         background: rgba(248, 248, 248, 0.69);
@@ -2398,6 +2779,10 @@ blockquote {
                     }
 
                     &:last-child {
+                        @include r(767) {
+                            padding-right: 20px;
+                        }
+
                         padding-right: 69px;
                     }
                 }
@@ -2405,28 +2790,61 @@ blockquote {
         }
 
         &-wrapper {
+            @include r(767) {
+                display: block;
+            }
+
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
 
             & > div {
+                @include r(767) {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+
                 width: 49%;
             }
         }
     }
 
     &__top {
+        @include r(767) {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+
+            .btn {
+                display: none;
+            }
+        }
+
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 30px;
 
         & > div {
+            @include r(767) {
+                justify-content: space-between;
+                width: 100%;
+            }
+
             display: flex;
             align-items: center;
         }
 
         .rating {
+            @include r(767) {
+                order: 2;
+                margin-right: 0;
+
+                .rating__count {
+                    display: none;
+                }
+            }
+
             margin-right: 33px;
         }
     }
@@ -2440,6 +2858,12 @@ blockquote {
     }
 
     &__contacts {
+        @include r(767) {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px 28px;
+        }
+
         background: #f7f7f7;
         border-radius: 18px;
         padding: 30px 38px;
@@ -2450,7 +2874,21 @@ blockquote {
         margin-bottom: 55px;
 
         &.vertical {
+            @include r(767) {
+                flex-direction: row;
+                align-items: flex-start;
+                padding: 20px 15px;
+                border-radius: 0;
+                margin-left: -15px;
+                width: calc(100% + 30px);
+            }
+
             div {
+                @include r(767) {
+                    font-size: 12px;
+                    margin-bottom: 0;
+                }
+
                 flex-direction: column;
                 align-items: center;
                 font-weight: 400;
@@ -2459,6 +2897,16 @@ blockquote {
                 color: #989898;
 
                 &:first-child {
+                    @include r(1023) {
+                        display: flex;
+                    }
+
+                    @include r(767) {
+                        font-size: 12px;
+                        text-align: center;
+                        margin-bottom: 0;
+                    }
+
                     align-self: initial;
                     font-size: 16px;
                     font-weight: 400;
@@ -2482,10 +2930,24 @@ blockquote {
         }
 
         div {
+            @include r(767) {
+                margin-bottom: 10px;
+            }
+
             display: flex;
             color: #292929;
 
             &:first-child {
+                @include r(1023) {
+                    display: none;
+                }
+
+                @include r(767) {
+                    display: block;
+                    text-align: left;
+                    margin-bottom: 15px;
+                }
+
                 align-self: center;
                 font-size: 18px;
                 font-weight: 700;
@@ -2518,11 +2980,23 @@ blockquote {
     }
 
     &.bottom {
+        @include r(1023) {
+            padding-bottom: 130px;
+        }
+
+        @include r(767) {
+            padding-bottom: 100px;
+        }
+
         margin-bottom: -8%;
         padding-bottom: 197px;
     }
 
     &__card {
+        @include r(767) {
+            padding: 20px 25px;
+        }
+
         background: #fff;
         border-radius: 10px;
         padding: 25px 30px;
@@ -2534,6 +3008,14 @@ blockquote {
         }
 
         &-answer {
+            @include r(1023) {
+                margin-left: 30px;
+            }
+
+            @include r(767) {
+                margin-left: 0;
+            }
+
             margin-top: 16px;
             margin-left: 60px;
             position: relative;
@@ -2552,12 +3034,20 @@ blockquote {
     }
 
     &__top {
+        @include r(767) {
+            display: block;
+        }
+
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
     }
 
     .rating {
+        @include r(767) {
+            margin-bottom: 10px;
+        }
+
         margin-right: 0;
     }
 
@@ -2569,6 +3059,10 @@ blockquote {
     }
 
     &__text {
+        @include r(767) {
+            font-size: 14px;
+        }
+
         margin-bottom: 28px;
         font-size: 16px;
         line-height: 1.62;
@@ -2614,6 +3108,10 @@ blockquote {
     }
 
     &__arrow {
+        @include r(767) {
+            margin: 0 5px !important;
+        }
+
         background: #000;
         color: #fff !important;
         margin: 0 10px !important;
@@ -2625,6 +3123,12 @@ blockquote {
         margin-bottom: 60px;
     }
 
+    @include r(767) {
+        h2 {
+            text-align: center;
+        }
+    }
+
     margin-bottom: $sectionMB;
 
     &.gray .container {
@@ -2632,23 +3136,44 @@ blockquote {
     }
 
     .container {
+        @include r(767) {
+            padding: 30px 30px;
+        }
+
         border-radius: 28px;
         padding: 30px 54px;
         background: #dcecd9;
     }
 
     &__body {
+        @include r(767) {
+            display: block;
+        }
+
         display: flex;
         margin-bottom: 14px;
 
         & > div {
             &:first-child {
+                @include r(1023) {
+                    width: 50%;
+                }
+
+                @include r(767) {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+
                 width: 35%;
                 margin-right: 24px;
             }
         }
 
         textarea {
+            @include r(767) {
+                height: 200px;
+            }
+
             height: inherit;
         }
 
@@ -2659,6 +3184,10 @@ blockquote {
     }
 
     &__bottom {
+        @include r(767) {
+            display: block;
+        }
+
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -2668,6 +3197,15 @@ blockquote {
         }
 
         .btn {
+            @include r(767) {
+                margin-top: 15px;
+                padding-left: 0;
+                padding-right: 0;
+                justify-content: center;
+                width: 100%;
+                margin-left: 0;
+            }
+
             flex-shrink: 0;
             margin-left: 20px;
             font-size: 17px;
@@ -2684,6 +3222,10 @@ blockquote {
     margin-bottom: $sectionMB;
 
     &__wrapper {
+        @include r(767) {
+            @include flexlist(6px);
+        }
+
         @include flexlist(12px);
 
         &.hidden {
@@ -2692,6 +3234,10 @@ blockquote {
     }
 
     &__card {
+        @include r(767) {
+            @include flexitem(50%, 6px, 12px);
+        }
+
         @include flexitem(25%, 12px, 39px);
         background: #f4f4f4;
         border-radius: 10px;
@@ -2725,10 +3271,21 @@ blockquote {
     }
 
     &__title {
+        @include r(1023) {
+            font-size: 12px;
+            padding: 10px 15px;
+        }
+
         padding: 14px 23px;
         font-weight: 400;
         font-size: 16px;
         line-height: 1.44;
+    }
+
+    .btn {
+        @include r(767) {
+            margin-top: 30px;
+        }
     }
 }
 
@@ -2820,6 +3377,7 @@ blockquote {
     }
 
     &__day {
+        flex-shrink: 0;
         padding: 22px 17px;
         display: flex;
         align-items: center;
@@ -2834,6 +3392,12 @@ blockquote {
     }
 
     &__title {
+        @include r(767) {
+            font-size: 14px;
+            margin-left: 15px;
+            margin-right: 30px;
+        }
+
         font-weight: 700;
         font-size: 19px;
         color: #292929;
@@ -2842,6 +3406,16 @@ blockquote {
     }
 
     &__body {
+        @include r(1279) {
+            padding-left: 39px;
+            padding-right: 39px;
+        }
+
+        @include r(767) {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
         padding: 34px 39px 24px 112px;
         background: #f2f9f1;
         border-radius: 0 0 10px 10px;
@@ -2868,12 +3442,20 @@ blockquote {
             padding-left: 25px;
 
             .program__gallery > div:first-child {
+                @include r(1279) {
+                    width: 315px;
+                }
+
                 width: 353px;
             }
         }
     }
 
     &__gallery {
+        @include r(767) {
+            flex-wrap: wrap;
+        }
+
         display: flex;
         margin-top: 37px;
 
@@ -2885,6 +3467,11 @@ blockquote {
 
         & > div {
             &:first-child {
+                @include r(767) {
+                    width: 100%;
+                    margin-bottom: 15px;
+                }
+
                 width: 320px;
                 flex-shrink: 0;
                 margin-right: 22px;
@@ -2949,6 +3536,19 @@ blockquote {
 
     &.green {
         background: url(../img/texture.png) repeat center #e6f9e3;
+    }
+
+    &.author {
+        @include r(1023) {
+            .contact {
+                margin-top: 15px;
+                background: transparent;
+                padding: 0;
+                border-top: 1px solid #000;
+                border-radius: 0;
+                padding-top: 20px;
+            }
+        }
     }
 
     .gid {
@@ -3132,6 +3732,17 @@ blockquote {
     }
 
     .btn {
+        @include r(1023) {
+            width: auto;
+            padding: 20px 40px;
+        }
+
+        @include r(767) {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+
         font-size: 17px;
         width: 100%;
         text-align: center;
@@ -3178,6 +3789,17 @@ blockquote {
         }
 
         span {
+            @include r(767) {
+                bottom: 15px;
+                left: 15px;
+                font-size: 13px;
+                right: 15px;
+
+                br {
+                    display: none;
+                }
+            }
+
             position: absolute;
             bottom: 27px;
             left: 22px;
@@ -3206,9 +3828,21 @@ blockquote {
         margin-bottom: 60px;
     }
 
+    @include r(767) {
+        margin-bottom: 30px;
+    }
+
     margin-bottom: $sectionMB;
 
     &__list {
+        @include r(1023) {
+            flex-wrap: wrap;
+        }
+
+        @include r(767) {
+            flex-direction: column;
+        }
+
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -3216,6 +3850,10 @@ blockquote {
 
         & > a,
         & > div {
+            @include r(767) {
+                margin-bottom: 20px;
+            }
+
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -3243,7 +3881,21 @@ blockquote {
             text-decoration: none;
         }
 
+        & > div {
+            &:last-child {
+                @include r(1023) {
+                    width: 100%;
+                }
+            }
+        }
+
         span {
+            @include r(1023) {
+                margin-top: 40px;
+                width: 100%;
+                text-align: center;
+            }
+
             font-weight: 300;
             font-size: 14px;
             color: #9c9c9c;
@@ -3252,6 +3904,15 @@ blockquote {
         }
 
         .header__social {
+            @include r(1023) {
+                width: 100%;
+                justify-content: center;
+            }
+
+            @include r(767) {
+                display: flex;
+            }
+
             & > div {
                 margin: 0;
                 display: flex;
@@ -3272,8 +3933,45 @@ blockquote {
 }
 
 .guide {
+    @include r(1279) {
+        .program__gallery {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .video {
+                margin-bottom: 12px;
+                margin-right: 0;
+                width: 100%;
+            }
+        }
+    }
+
     @include r(1023) {
         margin-bottom: 60px;
+
+        .program__gallery {
+            flex-wrap: nowrap;
+            justify-content: center;
+
+            .video {
+                margin-bottom: 0;
+                margin-right: 22px;
+                width: 320px;
+            }
+        }
+    }
+
+    @include r(767) {
+        .program__gallery {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .video {
+                margin-bottom: 12px;
+                margin-right: 0;
+                width: 100%;
+            }
+        }
     }
 
     margin-bottom: $sectionMB;
@@ -3281,11 +3979,31 @@ blockquote {
     z-index: 2;
 
     &__wrapper {
+        @include r(1279) {
+            height: 600px;
+        }
+
+        @include r(1023) {
+            display: block;
+            height: auto;
+        }
+
         height: 730px;
         display: flex;
     }
 
     &__sidebar {
+        @include r(1023) {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        @include r(767) {
+            width: calc(100% + 10px);
+            height: 300px;
+        }
+
         width: 427px;
         flex-shrink: 0;
         overflow-x: hidden;
@@ -3293,6 +4011,7 @@ blockquote {
         margin-right: 11px;
         scrollbar-width: thin;
         padding-right: 10px;
+        -webkit-overflow-scrolling: touch;
 
         &::-webkit-scrollbar {
             width: 6px;
@@ -3393,6 +4112,10 @@ blockquote {
     }
 
     &__top {
+        @include r(767) {
+            padding: 15px 20px;
+        }
+
         background: #ececec;
         border-radius: 10px;
         padding: 20px 36px;
@@ -3402,9 +4125,14 @@ blockquote {
     }
 
     &__body {
+        @include r(767) {
+            padding: 0 20px;
+        }
+
         padding: 0 38px;
         overflow-x: hidden;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
 
         &::-webkit-scrollbar {
             width: 6px;
@@ -3510,6 +4238,15 @@ blockquote {
 }
 
 .map {
+    @include r(1023) {
+        height: 439px;
+    }
+
+    @include r(767) {
+        height: 300px;
+        margin-bottom: 20px;
+    }
+
     width: 100%;
     height: 539px;
     position: relative;
@@ -3517,6 +4254,10 @@ blockquote {
     overflow: hidden;
 
     &::after {
+        @include r(767) {
+            display: none;
+        }
+
         content: '';
         position: absolute;
         top: 0;
