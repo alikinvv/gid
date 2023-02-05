@@ -63,6 +63,7 @@ ol {
 
         @include r(767) {
             font-size: 14px;
+            line-height: 1.71;
         }
 
         font-weight: 300;
@@ -90,6 +91,7 @@ ul {
 
         @include r(767) {
             font-size: 14px;
+            line-height: 1.71;
         }
 
         font-weight: 300;
