@@ -1139,6 +1139,10 @@ blockquote {
                 transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out, margin-top 0.2s ease-in-out;
 
                 &:hover {
+                    @include r(767) {
+                        margin-top: 0;
+                    }
+
                     background-color: #fff;
                     box-shadow: 0px 17px 19px rgba(0, 0, 0, 0.06);
                     margin-top: -10px;
