@@ -45,6 +45,7 @@ let main = new Swiper('.main .swiper-container', {
     },
     pagination: {
         el: '.main .swiper-pagination',
+        clickable: true,
     },
     on: {
         afterInit: function () {
@@ -239,7 +240,6 @@ $('body').on('click', '[data-modal]:not(.modal)', (e) => {
     if (!$('.backdrop').hasClass('active')) $('.backdrop').addClass('active');
     $('.modal.active').removeClass('active');
     $(`.modal[data-modal="${$(e.currentTarget).attr('data-modal')}"]`).addClass('active');
-    $('html, body').toggleClass('overflow');
 
     if ($(e.currentTarget).attr('data-modal') === 'thanks') {
         setTimeout(() => {
@@ -556,7 +556,6 @@ function init() {
 $('.hamburger').on('click', function () {
     $(this).toggleClass('active');
     $('.header__menu').toggleClass('active');
-    $('body').toggleClass('overflow');
 });
 
 let ww = $(window).width();

@@ -230,7 +230,6 @@ $trans: all 0.2s ease-in-out;
     &[data-modal='review-full'] {
         padding: 0;
         width: auto;
-        background: transparent;
         overflow: visible;
 
         .modal__close {
@@ -245,6 +244,10 @@ $trans: all 0.2s ease-in-out;
         img {
             border-radius: 18px;
             margin-bottom: -30px;
+            max-height: 70vh;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .review {

@@ -736,6 +736,25 @@ blockquote {
         justify-content: space-between;
         width: 100%;
 
+        & > * {
+            &:nth-last-child(-n + 3) {
+                .dropdown {
+                    left: initial;
+                    right: 0;
+
+                    &__wrapper {
+                        border-radius: 10px 0 10px 10px;
+
+                        &::before {
+                            left: initial;
+                            right: -6px;
+                            transform: rotate(135deg);
+                        }
+                    }
+                }
+            }
+        }
+
         & > div,
         & > a {
             @include r(1023) {
@@ -1089,6 +1108,7 @@ blockquote {
 
         position: relative;
         z-index: 2;
+        max-width: 620px;
     }
 
     &__text {
@@ -1109,6 +1129,7 @@ blockquote {
         margin-bottom: 47px;
         position: relative;
         z-index: 2;
+        max-width: 620px;
     }
 
     &__controls {
@@ -1315,13 +1336,9 @@ blockquote {
             @include r(1023) {
                 width: 100%;
 
-                &:first-child {
-                    order: 2;
-                }
-
                 &:last-child {
                     text-align: center;
-                    margin-bottom: 20px;
+                    margin-top: 20px;
                 }
             }
 
@@ -1756,6 +1773,10 @@ blockquote {
         color: inherit;
         text-decoration: none;
 
+        .zoom {
+            cursor: pointer;
+        }
+
         &-bottom {
             padding-bottom: 0;
             overflow: hidden;
@@ -1785,6 +1806,8 @@ blockquote {
         text-decoration: underline;
         color: #0188ff;
         margin-bottom: 17px;
+        display: block;
+        cursor: pointer;
     }
 
     &__author {
@@ -1937,7 +1960,7 @@ blockquote {
 
         @include r(767) {
             display: block;
-            margin: 0;
+            margin: 0 -12px;
         }
 
         display: flex;
@@ -2074,6 +2097,24 @@ blockquote {
         }
 
         &-full {
+            position: relative;
+
+            &::before {
+                content: '';
+                border-radius: 10px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: rgba(0, 0, 0, 0.33);
+            }
+
+            & > * {
+                position: relative;
+                z-index: 2;
+            }
+
             .blog__date,
             .blog__title {
                 color: #fff;
@@ -2161,7 +2202,7 @@ blockquote {
         &.float {
             float: left;
             margin-right: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
     }
 
@@ -2217,8 +2258,6 @@ blockquote {
         padding: 40px 37px;
     }
 
-    display: flex;
-    align-items: center;
     background: url(../img/texture.png) repeat center #ffefd8;
     padding: 60px 47px;
     border-radius: 10px;
@@ -2228,6 +2267,12 @@ blockquote {
 
     div {
         @include r(1023) {
+            display: block;
+        }
+
+        display: flex;
+
+        @include r(1023) {
             order: 2;
         }
     }
@@ -2235,7 +2280,9 @@ blockquote {
     img {
         @include r(1023) {
             margin-left: 0;
-            margin-bottom: 20px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         flex-shrink: 0;
@@ -2538,7 +2585,8 @@ blockquote {
 
 .scrolltop {
     @include r(1270) {
-        display: none;
+        right: 15px !important;
+        left: initial !important;
     }
 
     position: fixed;
@@ -2555,11 +2603,20 @@ blockquote {
     cursor: pointer;
     opacity: 0;
     transition: $trans;
+    z-index: 10;
 
     &:hover {
+        @include r(1270) {
+            background: #ffffff;
+        }
+
         background: #9dc297;
 
         svg {
+            @include r(1270) {
+                fill: #9dc297;
+            }
+
             fill: #fff;
         }
     }

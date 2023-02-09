@@ -41,7 +41,8 @@ var main = new Swiper('.main .swiper-container', {
     disableOnInteraction: false
   },
   pagination: {
-    el: '.main .swiper-pagination'
+    el: '.main .swiper-pagination',
+    clickable: true
   },
   on: {
     afterInit: function afterInit() {
@@ -231,7 +232,6 @@ $('body').on('click', '[data-modal]:not(.modal)', function (e) {
   if (!$('.backdrop').hasClass('active')) $('.backdrop').addClass('active');
   $('.modal.active').removeClass('active');
   $(".modal[data-modal=\"".concat($(e.currentTarget).attr('data-modal'), "\"]")).addClass('active');
-  $('html, body').toggleClass('overflow');
   if ($(e.currentTarget).attr('data-modal') === 'thanks') {
     setTimeout(function () {
       $('.modal.active').find('svg').addClass('animate');
@@ -481,7 +481,6 @@ function init() {
 $('.hamburger').on('click', function () {
   $(this).toggleClass('active');
   $('.header__menu').toggleClass('active');
-  $('body').toggleClass('overflow');
 });
 var ww = $(window).width();
 var initTablet768 = function initTablet768() {
