@@ -246,6 +246,14 @@ $('body').on('click', '[data-modal]:not(.modal)', (e) => {
             $('.modal.active').find('svg').addClass('animate');
         }, 100);
     }
+
+    if ($(e.currentTarget).attr('data-modal') === 'guide') {
+        $('html, body').addClass('overflow');
+        $('.guide__item').removeClass('active');
+        $('.guide__item[data-id="1"]').addClass('active');
+        $('.guide__main').removeClass('active');
+        $('.guide__main[data-id="1"]').addClass('active');
+    }
 });
 
 // close modal events
@@ -332,7 +340,7 @@ $('body').on('click', '.scrolltop', () => {
     $('html, body').animate({ scrollTop: 0 }, 500);
 });
 
-$('body').on('click', '.scrollto', (e) => {
+$('body').on('click', '[data-scrollto]', (e) => {
     e.preventDefault();
     let target = $(e.currentTarget).attr('data-scrollto');
     $('html, body').animate({ scrollTop: $(target).offset().top - 100 }, 500);
@@ -340,8 +348,8 @@ $('body').on('click', '.scrollto', (e) => {
 
 $('body').on('click', '.items .btn', (e) => {
     e.preventDefault();
+    $(e.currentTarget).prev().addClass('active');
     $(e.currentTarget).hide();
-    $(e.currentTarget).prev().slideDown().css('display', 'flex');
 });
 
 $('body').on('click', '.program__toggle', (e) => {
@@ -361,8 +369,7 @@ function calculateTotalValue(length) {
 }
 
 function calculateCurrentValue(currentTime) {
-    var current_hour = parseInt(currentTime / 3600) % 24,
-        current_minute = parseInt(currentTime / 60) % 60,
+    var current_minute = parseInt(currentTime / 60) % 60,
         current_seconds_long = currentTime % 60,
         current_seconds = current_seconds_long.toFixed(),
         current_time = (current_minute < 10 ? '0' + current_minute : current_minute) + ':' + (current_seconds < 10 ? '0' + current_seconds : current_seconds);
@@ -375,7 +382,6 @@ function initProgressBar() {
     var length = player.duration;
     var current_time = player.currentTime;
 
-    console.log(player.duration);
     $('.start-time').html(calculateCurrentValue(current_time));
     $('.end-time').html(calculateTotalValue(length));
 
@@ -395,28 +401,18 @@ function initProgressBar() {
 }
 
 function initPlayers(num) {
-    // pass num in if there are multiple audio players e.g 'player' + i
-
     for (var i = 0; i < num; i++) {
         (function () {
-            // Variables
-            // ----------------------------------------------------------
-            // audio embed object
-            var playerContainer = document.getElementById('player-container'),
-                player = document.getElementById('player'),
+            var player = document.getElementById('player'),
                 isPlaying = false,
                 playBtn = document.getElementById('play-btn');
 
-            // Controls Listeners
-            // ----------------------------------------------------------
             if (playBtn != null) {
                 playBtn.addEventListener('click', function () {
                     togglePlay();
                 });
             }
 
-            // Controls & Sounds Methods
-            // ----------------------------------------------------------
             function togglePlay() {
                 if (player.paused === false) {
                     player.pause();
@@ -480,11 +476,33 @@ function init() {
         objectManager.add(data);
     });
 
+    myMap.behaviors.disable('scrollZoom');
+
     function onObjectEvent(e) {
         var objectId = e.get('objectId');
         if (e.get('type') == 'mousedown') {
+            for (var i = 0; i < objectManager.objects.getLength(); i++) {
+                if (i != objectId) {
+                    objectManager.objects.setObjectOptions(i, {
+                        iconImageHref: 'img/icons/point.svg',
+                    });
+                }
+            }
+            objectManager.objects.setObjectOptions(objectId, {
+                iconImageHref: 'img/icons/point-active.svg',
+            });
+
             $('.guide__item.active').removeClass('active');
             $('.guide__item[data-id="' + objectId + '"]').addClass('active');
+            $('.guide__main.active .guide__body').scrollTop(0);
+            $('.guide__main.active').removeClass('active');
+            $('.guide__main[data-id="' + objectId + '"]').addClass('active');
+            $('.guide__sidebar').animate(
+                {
+                    scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                },
+                500
+            );
 
             myMap.setCenter(
                 [
@@ -513,6 +531,15 @@ function init() {
         if (next.length > 0) {
             current.removeClass('active');
             next.addClass('active');
+            $('.guide__main.active .guide__body').scrollTop(0);
+            $('.guide__main.active').removeClass('active');
+            $('.guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
+            $('.guide__sidebar').animate(
+                {
+                    scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                },
+                500
+            );
             myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
         }
     });
@@ -524,6 +551,15 @@ function init() {
         if (prev.length > 0) {
             current.removeClass('active');
             prev.addClass('active');
+            $('.guide__main.active .guide__body').scrollTop(0);
+            $('.guide__main.active').removeClass('active');
+            $('.guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
+            $('.guide__sidebar').animate(
+                {
+                    scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                },
+                500
+            );
             myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
         }
     });
@@ -535,6 +571,9 @@ function init() {
         $(e.currentTarget).addClass('active');
         $('.guide__content.active').removeClass('active');
         $(target).addClass('active');
+        $('.guide__main.active .guide__body').scrollTop(0);
+        $('.guide__main.active').removeClass('active');
+        $('.guide__main[data-id="' + $(e.currentTarget).attr('data-id') + '"]').addClass('active');
         myMap.setCenter(
             [
                 Number(
@@ -582,10 +621,44 @@ let initTablet768 = () => {
     }
 };
 
+let initMobile = () => {
+    if (ww <= 767 && !$('body').hasClass('s-312')) {
+        $('body').addClass('s-312');
+        $('.article__contacts').after($('.price'));
+    } else if (ww >= 768 && $('body').hasClass('s-312')) {
+        $('body').removeClass('s-312');
+        $('.article__sidebar').prepend($('.price'));
+    }
+};
+
 initTablet768();
+initMobile();
+
+if ($(window).width() > 1023) {
+    $('.article__sidebar').sticky({ topSpacing: 15, bottomSpacing: 300 });
+} else {
+    $('.article__sidebar').unstick();
+}
 
 $(window).on('resize', () => {
     ww = $(window).width();
 
+    if ($(window).width() > 1023) {
+        $('.article__sidebar').sticky({ topSpacing: 15, bottomSpacing: 300 });
+    } else {
+        $('.article__sidebar').unstick();
+    }
+
     initTablet768();
+    initMobile();
+});
+
+$('body').on('click', '.article__share > button', () => {
+    $('.article__share').toggleClass('active');
+});
+
+$(document).on('click', function (e) {
+    if (!$(e.target).closest('.article__share').length) {
+        $('.article__share').removeClass('active');
+    }
 });

@@ -1,5 +1,6 @@
 //= template/header.html
 <!-- START CONTENT -->
+
 <section class="breadcrumbs">
     <div class="container">
         <div class="breadcrumbs__list">
@@ -9,6 +10,7 @@
         </div>
     </div>
 </section>
+
 <section class="banner">
     <div class="container" style="background-image: url(img/track.jpg)">
         <h2 class="slider__title h1">Треккинг в&nbsp;Ингушетии</h2>
@@ -21,13 +23,14 @@
         </button>
     </div>
 </section>
+
 <section class="article">
     <div class="container">
         <div class="article__wrapper">
             <div>
                 <div class="article__top">
                     <div>
-                        <div class="rating disabled">
+                        <div class="rating disabled" data-scrollto=".comments__card">
                             <form>
                                 <fieldset>
                                     <span class="star-cb-group">
@@ -42,14 +45,46 @@
                             <span class="rating__count">20&nbsp;отзывов</span>
                         </div>
                         <div class="gid__badges">
-                            <span class="red">гид</span>
-                            <span class="blue">музей</span>
-                            <span class="green">путеводитель</span>
+                            <a href="javascript:" class="red">гид</a>
+                            <a href="javascript:" class="blue">музей</a>
+                            <a href="javascript:" class="green">путеводитель</a>
                         </div>
                     </div>
-                    <button class="article__share btn btn-outline">
-                        Поделиться <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-share"></use></svg>
-                    </button>
+                    <div class="article__share">
+                        <button class="btn btn-outline">
+                            Поделиться <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-share"></use></svg>
+                        </button>
+
+                        <div class="dropdown">
+                            <div class="header__social">
+                                <div>
+                                    <a href="javascript:void(0)" data-modal="message">
+                                        <svg class="icon" fill="#1CCE79"><use xlink:href="img/symbol-defs.svg#icon-whatsapp"></use></svg>
+                                    </a>
+                                    <a href="javascript:void(0)" data-modal="message">
+                                        <svg class="icon" fill="#00A3FF"><use xlink:href="img/symbol-defs.svg#icon-telegram"></use></svg>
+                                    </a>
+                                    <a href="javascript:void(0)" data-modal="message">
+                                        <svg class="icon" fill="#8932E0"><use xlink:href="img/symbol-defs.svg#icon-viber"></use></svg>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="javascript:void(0)" data-modal="message">
+                                        <svg class="icon" fill="#0077FF"><use xlink:href="img/symbol-defs.svg#icon-vk"></use></svg>
+                                    </a>
+                                    <a href="javascript:void(0)" data-modal="message">
+                                        <svg class="icon" fill="#FF6B00"><use xlink:href="img/symbol-defs.svg#icon-ok"></use></svg>
+                                    </a>
+                                    <a href="javascript:void(0)" data-modal="message">
+                                        <svg class="icon" fill="#FF0000"><use xlink:href="img/symbol-defs.svg#icon-youtube"></use></svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline">
+                                копировать <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-link"></use></svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <h2 class="h3">Описание тура</h2>
                 <p>
@@ -64,18 +99,18 @@
                 <div class="article__contacts vertical">
                     <div>
                         <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-point"></use></svg>
-                        место сбора <br />
-                        <strong>г. Магас</strong>
+                        <span class="name">место сбора</span>
+                        <span class="strong">г. Магас</span>
                     </div>
                     <div>
                         <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-time"></use></svg>
-                        время сбора <br />
-                        <strong>12.01.2023&nbsp;в 12.00 <span>(мск.)</span></strong>
+                        <span class="name">время сбора</span>
+                        <span class="strong">12.01.2023&nbsp;в 12.00 <span>(мск.)</span></span>
                     </div>
                     <div>
                         <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-user"></use></svg>
-                        группа <br />
-                        <strong>до&nbsp;10&nbsp;человек</strong>
+                        <span class="name">группа</span>
+                        <span class="strong">до&nbsp;10&nbsp;человек</span>
                     </div>
                 </div>
                 <div class="article__features-wrapper">
@@ -113,23 +148,23 @@
                 <h2 class="h4">Особенности тура</h2>
                 <div class="article__features article__features-horizontal">
                     <div>
-                        <div>Место сбора группы</div>
+                        <div class="strong">Место сбора группы</div>
                         <div>г. Магас</div>
                     </div>
                     <div>
-                        <div>Минимальный возраст</div>
+                        <div class="strong">Минимальный возраст</div>
                         <div>5&nbsp;лет</div>
                     </div>
                     <div>
-                        <div>Время сбора</div>
+                        <div class="strong">Время сбора</div>
                         <div>12&nbsp;января 2023&nbsp;в 12:00 по&nbsp;Мск</div>
                     </div>
                     <div>
-                        <div>Включено в&nbsp;стоимость</div>
+                        <div class="strong">Включено в&nbsp;стоимость</div>
                         <div>Проживание, питание, указанное в&nbsp;программе, экскурсионное обслуживание</div>
                     </div>
                     <div>
-                        <div>Оплачивается отдельно</div>
+                        <div class="strong">Оплачивается отдельно</div>
                         <div>
                             Перелёт до&nbsp;Республики Ингушетия, трансфер из&nbsp;аэропорта Магас, питание не&nbsp;включенное в&nbsp;программу, дополнительные
                             экскурсии
@@ -137,11 +172,11 @@
                     </div>
                 </div>
                 <h2>Программа тура</h2>
-                <div class="program__toggle">
+                <div class="program__toggle active">
                     <div class="program__day">день 1</div>
                     <div class="program__title">Посещение мест силы в&nbsp;горной зоне</div>
                 </div>
-                <div class="program__body">
+                <div class="program__body active">
                     <p>
                         Горная Ингушетия относительно недавно стала доступна масс посетителю, несмотря на&nbsp;то, что в&nbsp;советское время через регион
                         проходили всесоюзные туристические маршруты, а&nbsp;в&nbsp;санатории Армхи, основанном в&nbsp;1920-е год.
@@ -179,11 +214,11 @@
                     </div>
                     <div class="program__gallery-description">Башенный комплекс Оздик</div>
                 </div>
-                <div class="program__toggle active">
+                <div class="program__toggle">
                     <div class="program__day">день 2</div>
                     <div class="program__title">Горные экскурсии</div>
                 </div>
-                <div class="program__body active">
+                <div class="program__body">
                     <p>
                         Горная Ингушетия относительно недавно стала доступна масс посетителю, несмотря на&nbsp;то, что в&nbsp;советское время через регион
                         проходили всесоюзные туристические маршруты, а&nbsp;в&nbsp;санатории Армхи, основанном в&nbsp;1920-е год.
@@ -440,10 +475,10 @@
                     </div>
                 </div>
                 <h2 class="h3">Важно знать</h2>
-                <div class="program__toggle gray active">
+                <div class="program__toggle gray">
                     <div class="program__title">Посещение посёлка коренных жителей, обед в&nbsp;посёлке</div>
                 </div>
-                <div class="program__body gray active">
+                <div class="program__body gray">
                     <p>
                         Горная Ингушетия относительно недавно стала доступна масс посетителю, несмотря на&nbsp;то, что в&nbsp;советское время через регион
                         проходили всесоюзные туристические маршруты, а&nbsp;в&nbsp;санатории Армхи, основанном в&nbsp;1920-е год.
@@ -921,8 +956,8 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <div class="article__item card">
+            <div class="article__sidebar">
+                <div class="article__item card price">
                     <div class="gid__price">
                         <span>255&nbsp;000&nbsp;₽</span>
                         245&nbsp;000&nbsp;₽
@@ -951,8 +986,8 @@
                     </div>
                     <div class="card__list">
                         <span>даты набора групп:</span>
-                        12.01.2023&nbsp;&mdash; 16.01.2023 <br />
-                        26.01.23&nbsp;&mdash; 30.01.2023
+                        <div>12.01.2023&nbsp;&mdash; 16.01.2023</div>
+                        <div>26.01.23&nbsp;&mdash; 30.01.2023</div>
                     </div>
                     <div class="card__list">
                         <span>уровень:</span>
@@ -965,6 +1000,11 @@
                                 <div class="level__dot"></div>
                             </div>
                             <svg class="icon person"><use xlink:href="img/symbol-defs.svg#icon-question"></use></svg>
+
+                            <div class="dropdown">
+                                Продвинутый уровень сложности&nbsp;&mdash; не&nbsp;требует специальных навыков, но&nbsp;туристы должны быть в&nbsp;хорошей
+                                физической форме: экспедиции, продолжительные сплавы и&nbsp;тд.
+                            </div>
                         </div>
                     </div>
                     <div class="card__list">
@@ -978,6 +1018,10 @@
                                 <div class="level__dot"></div>
                             </div>
                             <svg class="icon person"><use xlink:href="img/symbol-defs.svg#icon-question"></use></svg>
+                            <div class="dropdown">
+                                Продвинутый уровень сложности&nbsp;&mdash; не&nbsp;требует специальных навыков, но&nbsp;туристы должны быть в&nbsp;хорошей
+                                физической форме: экспедиции, продолжительные сплавы и&nbsp;тд.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -990,7 +1034,7 @@
                             <div class="reviews__author-name">
                                 Константин Константинопольский <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-done"></use></svg>
                             </div>
-                            <div class="reviews__author-text">36&nbsp;лет, металлопрокатчик</div>
+                            <div class="reviews__author-text">гид по туру «Треккинг&nbsp;в&nbsp;Ингушетии»</div>
                         </div>
                     </div>
                 </div>
