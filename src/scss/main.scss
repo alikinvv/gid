@@ -1576,11 +1576,13 @@ blockquote {
         font-size: 18px;
         line-height: 1.28;
         margin-bottom: 10px;
+        hyphens: auto;
     }
 
     &__text {
         font-size: 15px;
         line-height: 1.53;
+        hyphens: auto;
 
         & + .btn {
             margin-top: 30px;
@@ -1980,7 +1982,8 @@ blockquote {
 
         @include r(767) {
             display: block;
-            margin: 0 -12px;
+            margin: 0;
+            width: calc(100% + 12px);
         }
 
         display: flex;
@@ -2291,6 +2294,7 @@ blockquote {
         }
 
         display: flex;
+        align-items: flex-start;
 
         @include r(1023) {
             order: 2;
@@ -2740,8 +2744,12 @@ blockquote {
     &__share {
         @include r(767) {
             margin-top: 15px;
-            width: 182px !important;
             align-self: flex-end;
+            width: 35px !important;
+            position: absolute;
+            right: 0;
+            top: -18px;
+            padding-right: 0 !important;
 
             .header__social {
                 display: flex;
@@ -2753,11 +2761,30 @@ blockquote {
 
         &.active {
             .dropdown {
-                display: block;
+                opacity: 1;
+                pointer-events: auto;
             }
         }
 
         & > button {
+            @include r(767) {
+                width: 35px;
+                justify-content: flex-end;
+                height: 35px;
+                color: transparent;
+                padding: 0;
+                padding-right: 8px;
+
+                &:hover {
+                    background: #fff;
+                    color: transparent;
+
+                    svg {
+                        fill: #000;
+                    }
+                }
+            }
+
             position: relative;
             z-index: 2;
             background: #fff;
@@ -2765,9 +2792,24 @@ blockquote {
             padding-right: 0;
             width: 100%;
             justify-content: center;
+
+            svg {
+                @include r(767) {
+                    flex-shrink: 0;
+                }
+            }
         }
 
         .dropdown {
+            @include r(767) {
+                width: 200px;
+                left: initial;
+                right: 3px;
+                bottom: 29px;
+                color: #000;
+                padding-top: 14px;
+            }
+
             position: absolute;
             bottom: 29px;
             left: 0;
@@ -2779,7 +2821,9 @@ blockquote {
             padding: 40px 20px 12px;
             transform: translateY(100%);
             z-index: 1;
-            display: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: $trans;
 
             .header__social {
                 flex-direction: column;
@@ -2804,6 +2848,32 @@ blockquote {
                 padding: 10px 0;
                 justify-content: center;
                 width: 100%;
+
+                svg {
+                    pointer-events: none;
+                }
+
+                &.active {
+                    background: #b0e7bc;
+                    border-color: #b0e7bc;
+                    color: #000;
+
+                    svg {
+                        font-size: 15px;
+                        fill: #000;
+                    }
+
+                    &:hover {
+                        background: #b0e7bc;
+                        border-color: #b0e7bc;
+                        color: #000;
+
+                        svg {
+                            font-size: 15px;
+                            fill: #000;
+                        }
+                    }
+                }
             }
         }
     }
@@ -2818,6 +2888,7 @@ blockquote {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        position: relative;
 
         & > div {
             @include r(1279) {
@@ -2833,7 +2904,7 @@ blockquote {
 
             &:last-child {
                 @include r(1279) {
-                    width: 28%;
+                    width: 319px;
                 }
 
                 @include r(1023) {
@@ -2857,8 +2928,12 @@ blockquote {
                     margin: 0;
                 }
 
-                width: 24%;
+                width: 273px;
                 flex-shrink: 0;
+
+                &.bottom {
+                    transform: none !important;
+                }
             }
         }
     }
@@ -2871,8 +2946,8 @@ blockquote {
                 padding-left: 20px;
             }
 
-            border: 2px solid #eeeeee;
-            margin-bottom: -2px;
+            border: 1px solid #eeeeee;
+            margin-bottom: -1px;
             padding: 8px 0;
             display: flex;
             padding-left: 69px;
@@ -2927,7 +3002,7 @@ blockquote {
                     background: transparent;
                     font-weight: 400;
                     padding-left: 0;
-                    border: 2px solid #eeeeee;
+                    border: 1px solid #eeeeee;
                 }
 
                 &:last-child {
@@ -2999,6 +3074,7 @@ blockquote {
             flex-direction: column;
             align-items: flex-start;
             width: 100%;
+            position: relative;
         }
 
         display: flex;
@@ -3010,6 +3086,7 @@ blockquote {
             @include r(767) {
                 justify-content: space-between;
                 width: 100%;
+                padding-right: 49px;
             }
 
             display: flex;
@@ -3583,6 +3660,14 @@ blockquote {
             &.active {
                 background: url(../img/texture.png) repeat center darken(#efefef, 10%);
             }
+
+            .program__title {
+                @include r(767) {
+                    margin-left: 15px;
+                }
+
+                margin-left: 35px;
+            }
         }
     }
 
@@ -3653,7 +3738,7 @@ blockquote {
             }
 
             background: #efefef;
-            padding-left: 25px;
+            padding: 40px 37px;
 
             .program__gallery > div:first-child {
                 @include r(1279) {
@@ -3756,6 +3841,26 @@ blockquote {
 
     &.green {
         background: url(../img/texture.png) repeat center #e6f9e3;
+    }
+
+    &.contact {
+        @include r(767) {
+            text-align: center;
+
+            .header__phone {
+                justify-content: center;
+            }
+
+            .question__link {
+                margin-left: 0;
+                margin-top: 5px;
+                display: block;
+            }
+
+            .header__social {
+                justify-content: center;
+            }
+        }
     }
 
     &.author {

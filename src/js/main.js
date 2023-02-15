@@ -497,12 +497,15 @@ function init() {
             $('.guide__main.active .guide__body').scrollTop(0);
             $('.guide__main.active').removeClass('active');
             $('.guide__main[data-id="' + objectId + '"]').addClass('active');
-            $('.guide__sidebar').animate(
-                {
-                    scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
-                },
-                500
-            );
+            $('html, body').animate({ scrollTop: $('.guide').offset().top - 20 }, 500);
+            $('.guide__sidebar')
+                .stop()
+                .animate(
+                    {
+                        scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                    },
+                    500
+                );
 
             myMap.setCenter(
                 [
@@ -534,12 +537,14 @@ function init() {
             $('.guide__main.active .guide__body').scrollTop(0);
             $('.guide__main.active').removeClass('active');
             $('.guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
-            $('.guide__sidebar').animate(
-                {
-                    scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
-                },
-                500
-            );
+            $('.guide__sidebar')
+                .stop()
+                .animate(
+                    {
+                        scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                    },
+                    500
+                );
             myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
         }
     });
@@ -554,12 +559,14 @@ function init() {
             $('.guide__main.active .guide__body').scrollTop(0);
             $('.guide__main.active').removeClass('active');
             $('.guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
-            $('.guide__sidebar').animate(
-                {
-                    scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
-                },
-                500
-            );
+            $('.guide__sidebar')
+                .stop()
+                .animate(
+                    {
+                        scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                    },
+                    500
+                );
             myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
         }
     });
@@ -624,30 +631,30 @@ let initTablet768 = () => {
 let initMobile = () => {
     if (ww <= 767 && !$('body').hasClass('s-312')) {
         $('body').addClass('s-312');
-        $('.article__contacts').after($('.price'));
+        $('.article__contacts').after($('.article__sidebar'));
     } else if (ww >= 768 && $('body').hasClass('s-312')) {
         $('body').removeClass('s-312');
-        $('.article__sidebar').prepend($('.price'));
+        $('.article__wrapper').append($('.article__sidebar'));
     }
 };
 
 initTablet768();
 initMobile();
 
-if ($(window).width() > 1023) {
-    $('.article__sidebar').sticky({ topSpacing: 15, bottomSpacing: 300 });
-} else {
-    $('.article__sidebar').unstick();
-}
+// if ($(window).width() > 1023) {
+//     $('.article__sidebar').sticky({ topSpacing: 15, bottomSpacing: 300 });
+// } else {
+//     $('.article__sidebar').unstick();
+// }
 
 $(window).on('resize', () => {
     ww = $(window).width();
 
-    if ($(window).width() > 1023) {
-        $('.article__sidebar').sticky({ topSpacing: 15, bottomSpacing: 300 });
-    } else {
-        $('.article__sidebar').unstick();
-    }
+    // if ($(window).width() > 1023) {
+    //     $('.article__sidebar').sticky({ topSpacing: 15, bottomSpacing: 300 });
+    // } else {
+    //     $('.article__sidebar').unstick();
+    // }
 
     initTablet768();
     initMobile();
@@ -655,10 +662,64 @@ $(window).on('resize', () => {
 
 $('body').on('click', '.article__share > button', () => {
     $('.article__share').toggleClass('active');
+
+    if ($('.article__share').hasClass('active')) {
+        $('.article__share .dropdown > button')
+            .removeClass('active')
+            .html('копировать  <svg class="icon" fill="#1CCE79"><use xlink:href="img/symbol-defs.svg#icon-link"></use></svg>');
+    }
+});
+
+$('body').on('click', '.article__share .dropdown > button', (e) => {
+    $(e.currentTarget).addClass('active').html('скопировано <svg class="icon" fill="#1CCE79"><use xlink:href="img/symbol-defs.svg#icon-check"></use></svg>');
 });
 
 $(document).on('click', function (e) {
     if (!$(e.target).closest('.article__share').length) {
         $('.article__share').removeClass('active');
     }
+});
+
+let lastScrollTop = 0;
+let sidebarOffset = 0;
+let transform = 0;
+
+if ($('.article__sidebar').length > 0) {
+    sidebarOffset = $('.article__sidebar').offset().top;
+}
+
+$(window).scroll(function (event) {
+    let st = $(this).scrollTop();
+
+    if (st > sidebarOffset && $(window).width() > 1023 && $('.article__sidebar').length > 0) {
+        // if (st < $('.subscribe').offset().top - $('.order__sidebar').outerHeight()) {
+        //     $('.order__sidebar')
+        //         .css('right', 0)
+        //         .css('top', st - $('.order__wrap').offset().top);
+        // }
+
+        if (st < $('.footer').offset().top - $('.article__sidebar').outerHeight()) {
+            $('.article__sidebar')
+                .css('left', $('.article__sidebar').offset().left)
+                .css('top', 0)
+                .css('bottom', 'initial')
+                .css('right', 'initial')
+                .css('position', 'fixed')
+                .removeClass('bottom');
+
+            if (st > lastScrollTop) {
+                transform = transform < $('.article__sidebar').outerHeight() - $(window).height() ? transform + 10 : transform;
+                $('.article__sidebar').css('transform', `translateY(-${transform}px)`);
+            } else {
+                transform = transform > 0 ? transform - 10 : transform;
+                $('.article__sidebar').css('transform', `translateY(-${transform}px)`);
+            }
+        } else {
+            $('.article__sidebar').css('top', 'initial').css('bottom', 0).css('left', 'initial').css('right', 0).css('position', 'absolute').addClass('bottom');
+        }
+    } else {
+        $('.article__sidebar').css('position', 'static').css('transform', `translateY(0)`);
+    }
+
+    lastScrollTop = st;
 });
