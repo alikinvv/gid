@@ -492,17 +492,20 @@ function init() {
                 iconImageHref: 'img/icons/point-active.svg',
             });
 
-            $('.guide__item.active').removeClass('active');
-            $('.guide__item[data-id="' + objectId + '"]').addClass('active');
-            $('.guide__main.active .guide__body').scrollTop(0);
-            $('.guide__main.active').removeClass('active');
-            $('.guide__main[data-id="' + objectId + '"]').addClass('active');
+            $('section.guide .guide__item.active').removeClass('active');
+            $('section.guide .guide__item[data-id="' + objectId + '"]').addClass('active');
+            $('section.guide .guide__main.active .guide__body').scrollTop(0);
+            $('section.guide .guide__main.active').removeClass('active');
+            $('section.guide .guide__main[data-id="' + objectId + '"]').addClass('active');
             $('html, body').animate({ scrollTop: $('.guide').offset().top - 20 }, 500);
-            $('.guide__sidebar')
+            $('section.guide .guide__sidebar')
                 .stop()
                 .animate(
                     {
-                        scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                        scrollTop:
+                            $('section.guide .guide__item.active').offset().top -
+                            $('section.guide .guide__sidebar').offset().top +
+                            $('section.guide .guide__sidebar').scrollTop(),
                     },
                     500
                 );
@@ -510,12 +513,12 @@ function init() {
             myMap.setCenter(
                 [
                     Number(
-                        $('.guide__item[data-id="' + objectId + '"]')
+                        $('section.guide .guide__item[data-id="' + objectId + '"]')
                             .attr('data-coordinate')
                             .match(/(.*), (.*)/)[1]
                     ),
                     Number(
-                        $('.guide__item[data-id="' + objectId + '"]')
+                        $('section.guide .guide__item[data-id="' + objectId + '"]')
                             .attr('data-coordinate')
                             .match(/(.*), (.*)/)[2]
                     ),
@@ -527,24 +530,49 @@ function init() {
 
     objectManager.objects.events.add(['mousedown', 'mouseup'], onObjectEvent);
 
-    $('body').on('click', '.guide-next', (e) => {
+    $('body').on('click', 'section.guide .guide-next', (e) => {
         e.preventDefault();
-        let current = $('.guide__item.active');
+        let current = $('section.guide .guide__item.active');
         let next = current.next();
         if (next.length > 0) {
             current.removeClass('active');
             next.addClass('active');
-            $('.guide__main.active .guide__body').scrollTop(0);
-            $('.guide__main.active').removeClass('active');
-            $('.guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
+            $('section.guide .guide__main.active .guide__body').scrollTop(0);
+            $('section.guide .guide__main.active').removeClass('active');
+            $('section.guide .guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
             $('html, body')
                 .stop()
-                .animate({ scrollTop: $('.guide').offset().top - 20 }, 500);
-            $('.guide__sidebar')
+                .animate({ scrollTop: $('section.guide').offset().top - 20 }, 500);
+            $('section.guide .guide__sidebar')
                 .stop()
                 .animate(
                     {
-                        scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                        scrollTop:
+                            $('section.guide .guide__item.active').offset().top -
+                            $('section.guide .guide__sidebar').offset().top +
+                            $('section.guide .guide__sidebar').scrollTop(),
+                    },
+                    500
+                );
+            myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+        }
+    });
+    $('body').on('click', '.modal .guide-next', (e) => {
+        e.preventDefault();
+        let current = $('.modal .guide__item.active');
+        let next = current.next();
+        if (next.length > 0) {
+            current.removeClass('active');
+            next.addClass('active');
+            $('.modal .guide__main.active .guide__body').scrollTop(0);
+            $('.modal .guide__main.active').removeClass('active');
+            $('.modal .guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
+            $('.modal .guide__sidebar')
+                .stop()
+                .animate(
+                    {
+                        scrollTop:
+                            $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
                     },
                     500
                 );
@@ -552,24 +580,49 @@ function init() {
         }
     });
 
-    $('body').on('click', '.guide-prev', (e) => {
+    $('body').on('click', 'section.guide .guide-prev', (e) => {
         e.preventDefault();
-        let current = $('.guide__item.active');
+        let current = $('section.guide .guide__item.active');
         let prev = current.prev();
         if (prev.length > 0) {
             current.removeClass('active');
             prev.addClass('active');
-            $('.guide__main.active .guide__body').scrollTop(0);
-            $('.guide__main.active').removeClass('active');
-            $('.guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
+            $('section.guide .guide__main.active .guide__body').scrollTop(0);
+            $('section.guide .guide__main.active').removeClass('active');
+            $('section.guide .guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
             $('html, body')
                 .stop()
-                .animate({ scrollTop: $('.guide').offset().top - 20 }, 500);
-            $('.guide__sidebar')
+                .animate({ scrollTop: $('section.guide').offset().top - 20 }, 500);
+            $('section.guide .guide__sidebar')
                 .stop()
                 .animate(
                     {
-                        scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                        scrollTop:
+                            $(' section.guide .guide__item.active').offset().top -
+                            $('section.guide .guide__sidebar').offset().top +
+                            $('section.guide .guide__sidebar').scrollTop(),
+                    },
+                    500
+                );
+            myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+        }
+    });
+    $('body').on('click', '.modal .guide-prev', (e) => {
+        e.preventDefault();
+        let current = $('.modal .guide__item.active');
+        let prev = current.prev();
+        if (prev.length > 0) {
+            current.removeClass('active');
+            prev.addClass('active');
+            $('.modal .guide__main.active .guide__body').scrollTop(0);
+            $('.modal .guide__main.active').removeClass('active');
+            $('.modal .guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
+            $('.modal .guide__sidebar')
+                .stop()
+                .animate(
+                    {
+                        scrollTop:
+                            $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
                     },
                     500
                 );
@@ -577,21 +630,61 @@ function init() {
         }
     });
 
-    $('body').on('click', '.guide__item', (e) => {
+    $('body').on('click', 'section.guide .guide__item', (e) => {
         e.preventDefault();
+
         let target = $(e.currentTarget).attr('data-target');
-        $('.guide__item.active').removeClass('active');
+        $('section.guide .guide__item.active').removeClass('active');
         $(e.currentTarget).addClass('active');
-        $('.guide__content.active').removeClass('active');
+        $('section.guide .guide__content.active').removeClass('active');
         $(target).addClass('active');
-        $('.guide__main.active .guide__body').scrollTop(0);
-        $('.guide__main.active').removeClass('active');
-        $('.guide__main[data-id="' + $(e.currentTarget).attr('data-id') + '"]').addClass('active');
-        $('.guide__sidebar')
+        $('section.guide .guide__main.active .guide__body').scrollTop(0);
+        $('section.guide .guide__main.active').removeClass('active');
+        $('section.guide .guide__main[data-id="' + $(e.currentTarget).attr('data-id') + '"]').addClass('active');
+        $('section.guide .guide__sidebar')
             .stop()
             .animate(
                 {
-                    scrollTop: $('.guide__item.active').offset().top - $('.guide__sidebar').offset().top + $('.guide__sidebar').scrollTop(),
+                    scrollTop:
+                        $('section.guide .guide__item.active').offset().top -
+                        $('section.guide .guide__sidebar').offset().top +
+                        $('section.guide .guide__sidebar').scrollTop(),
+                },
+                500
+            );
+        myMap.setCenter(
+            [
+                Number(
+                    $(e.currentTarget)
+                        .attr('data-coordinate')
+                        .match(/(.*), (.*)/)[1]
+                ),
+                Number(
+                    $(e.currentTarget)
+                        .attr('data-coordinate')
+                        .match(/(.*), (.*)/)[2]
+                ),
+            ],
+            14
+        );
+    });
+    $('body').on('click', '.modal .guide__item', (e) => {
+        e.preventDefault();
+
+        let target = $(e.currentTarget).attr('data-target');
+        $('.modal .guide__item.active').removeClass('active');
+        $(e.currentTarget).addClass('active');
+        $('.modal .guide__content.active').removeClass('active');
+        $(target).addClass('active');
+        $('.modal .guide__main.active .guide__body').scrollTop(0);
+        $('.modal .guide__main.active').removeClass('active');
+        $('.modal .guide__main[data-id="' + $(e.currentTarget).attr('data-id') + '"]').addClass('active');
+        $('.modal .guide__sidebar')
+            .stop()
+            .animate(
+                {
+                    scrollTop:
+                        $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
                 },
                 500
             );
