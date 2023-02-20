@@ -19,6 +19,12 @@ body {
     height: 100%;
 }
 
+@supports (-webkit-touch-callout: none) {
+    video:paused {
+        display: none;
+    }
+}
+
 body {
     @include r(767) {
         font-size: 15px;
