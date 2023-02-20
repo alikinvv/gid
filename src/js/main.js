@@ -691,9 +691,11 @@ let initTablet768 = () => {
 let initMobile = () => {
     if (ww <= 767 && !$('body').hasClass('s-312')) {
         $('body').addClass('s-312');
+        $('.article__contacts').after($('.article__sidebar'));
         $('.header__search').after($('.header__lang'));
     } else if (ww >= 768 && $('body').hasClass('s-312')) {
         $('body').removeClass('s-312');
+        $('.article__wrapper').append($('.article__sidebar'));
         $('.header__row.top').append($('.header__lang'));
     }
 };
