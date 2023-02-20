@@ -582,6 +582,7 @@ blockquote {
             align-items: center;
             justify-content: center;
             position: relative;
+            z-index: 11;
 
             &.active .dropdown {
                 opacity: 1;
@@ -1195,7 +1196,7 @@ blockquote {
                 padding: 19px 40px;
                 font-size: 17px;
                 position: relative;
-                z-index: 2;
+                z-index: 10;
             }
         }
     }
@@ -1208,7 +1209,7 @@ blockquote {
         }
 
         position: relative;
-        z-index: 2;
+        z-index: 10;
         max-width: 620px;
     }
 
@@ -1229,7 +1230,7 @@ blockquote {
         font-size: 18px;
         margin-bottom: 47px;
         position: relative;
-        z-index: 2;
+        z-index: 10;
         max-width: 620px;
     }
 
