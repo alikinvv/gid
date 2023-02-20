@@ -13,12 +13,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css?v=5">
+    <link rel="stylesheet" href="css/main.css?v=6">
 
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
 <body>
+
+    <div class="mainwrapper">
 
     <header class="header">
         <div class="container">
@@ -53,6 +55,14 @@
                     <div class="header__lang">
                         <div>ru</div>
                         <div class="active">eng</div>
+                    </div>
+                    <div class="header__mobile">
+                        <svg class="icon"><use xlink:href="img/symbol-defs.svg#icon-phone"></use></svg>
+
+                        <div class="dropdown">
+                            <a href="tel:+74956878879" class="header__phone">+7 495 687-88-79</a>
+                            <button class="header__call btn btn-blue btn-outline" data-modal="call">заказать звонок</button>
+                        </div>
                     </div>
                 </div>
                 <div class="header__row bottom">
@@ -124,9 +134,14 @@
                         <button class="btn">Узнать подробнее</button>
                     </div>
                     <div class="swiper-slide white slide-video" data-background="video">
-                        <video class="jquery-background-video" autoplay muted loop>
+                        <video class="jquery-background-video" autoplay muted loop poster="img/poster.jpg">
                             <source src="video.mp4" type="video/mp4" />
                         </video>
+                        <!-- <div class="element-with-video-bg jquery-background-video-wrapper">
+                            <video class="my-background-video jquery-background-video" loop autoplay muted playsinline poster="path/to/your/poster.jpg">
+                                <source src="video.mp4" type="video/mp4" />
+                            </video>
+                        </div> -->
                         <h2 class="slider__title h1">
                             Ингушетия&nbsp;&mdash; <br />
                             страна башен и&nbsp;легенд
@@ -1049,6 +1064,7 @@
     </div>
 </section>
 <!-- END CONTENT -->
+</div>
 <footer class="footer">
     <div class="container">
         <div class="footer__top">
@@ -1379,8 +1395,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -1443,8 +1459,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -1507,8 +1523,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -1571,8 +1587,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -1635,8 +1651,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -1699,8 +1715,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -1763,8 +1779,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -1827,8 +1843,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -1891,8 +1907,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -1955,8 +1971,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -2019,8 +2035,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -2083,8 +2099,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -2147,8 +2163,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -2211,8 +2227,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -2275,8 +2291,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -2339,8 +2355,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -2403,8 +2419,8 @@
                                         <progress id="seekObj" value="0" max="1"></progress>
                                     </span>
                                     <br />
-                                    <small style="float: left; position: relative; left: 15px" class="start-time">&nbsp;</small>
-                                    <small style="float: right; position: relative; right: 20px" class="end-time">&nbsp;</small>
+                                    <small style="float: left; position: relative; left: 15px" class="start-time">00:00</small>
+                                    <small style="float: right; position: relative; right: 20px" class="end-time">5:44</small>
                                 </div>
                             </div>
                         </div>
@@ -2473,13 +2489,14 @@
 <script src="https://rawgit.com/BGStock/jquery-background-video/master/jquery.background-video.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+<script src="https://rawgit.com/BGStock/jquery-background-video/master/jquery.background-video.js"></script>
 <script src="https://unpkg.com/imask"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"></script>
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru-RU&amp;apikey=7c1a3237-498c-4eda-967d-e61fb6cd7442" type="text/javascript"></script>
 <script src="js/objects.json" type="text/javascript"></script>
 <script src="js/ResizeSensor.js"></script>
 <script src="js/jquery.sticky-sidebar.min.js"></script>
-<script src="js/main.js?v=5"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 
 </html>

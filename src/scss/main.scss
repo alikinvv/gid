@@ -14,6 +14,11 @@ $sectionMB: 95px;
     color: #fff;
 }
 
+html,
+body {
+    height: 100%;
+}
+
 body {
     @include r(767) {
         font-size: 15px;
@@ -24,6 +29,8 @@ body {
     font-weight: 400;
     line-height: 1.44;
     color: #292929;
+    display: flex;
+    flex-wrap: wrap;
 
     &.overflow {
         overflow: hidden;
@@ -551,6 +558,10 @@ blockquote {
         }
 
         img {
+            @include r(1023) {
+                width: 90px;
+            }
+
             width: 122px;
         }
     }
@@ -563,6 +574,53 @@ blockquote {
         }
 
         width: 100%;
+    }
+
+    &__mobile {
+        @include r(767) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            &.active .dropdown {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            & > svg {
+                font-size: 25px;
+                margin-right: 15px;
+                position: relative;
+                left: 10px;
+                fill: #b8b8b8;
+            }
+
+            .dropdown {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 200px;
+                transform: translateY(100%);
+                background: #fff;
+                box-shadow: 0px 12px 13px rgba(0, 0, 0, 0.09);
+                padding: 10px 15px;
+                text-align: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: $trans;
+
+                .btn {
+                    display: block;
+                    width: 100%;
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        display: none;
     }
 
     &__row {
@@ -583,32 +641,7 @@ blockquote {
 
     .header__contacts {
         @include r(767) {
-            display: block;
-            order: 3;
-            margin-left: 5px;
-
-            a {
-                &:first-child {
-                    display: none;
-                }
-
-                &:last-child {
-                    width: 40px;
-                    height: 40px;
-                    color: transparent;
-
-                    &:hover {
-                        color: transparent;
-                    }
-
-                    svg {
-                        font-size: 25px;
-                        margin-right: 0;
-                        position: relative;
-                        left: 10px;
-                    }
-                }
-            }
+            display: none;
         }
     }
 
@@ -617,6 +650,10 @@ blockquote {
         align-items: center;
 
         a {
+            @include r(1023) {
+                font-size: 12px;
+            }
+
             display: flex;
             align-items: center;
             font-size: 15px;
@@ -641,6 +678,10 @@ blockquote {
             }
 
             svg {
+                @include r(1023) {
+                    font-size: 16px;
+                }
+
                 fill: $gray;
                 margin-right: 10px;
                 font-size: 20px;
@@ -661,11 +702,20 @@ blockquote {
         div {
             @include r(1023) {
                 margin: 0;
+                display: flex;
+                align-items: center;
             }
 
             margin: 0 8px;
 
             a {
+                @include r(1023) {
+                    font-size: 17px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
                 margin: 0 2px;
                 font-size: 22px;
                 transition: $trans;
@@ -678,8 +728,15 @@ blockquote {
     }
 
     &__call {
+        @include r(1023) {
+            font-size: 12px;
+            padding: 5px 10px;
+        }
+
         @include r(767) {
-            padding: 7px 15px;
+            display: none;
+            font-size: 14px;
+            padding: 8px 10px;
         }
 
         padding: 8px 15px;
@@ -687,7 +744,7 @@ blockquote {
 
     &__lang {
         @include r(767) {
-            display: none;
+            margin-right: 10px;
         }
 
         display: flex;
@@ -696,6 +753,14 @@ blockquote {
         margin-right: -5px;
 
         div {
+            @include r(1023) {
+                font-size: 12px;
+            }
+
+            @include r(767) {
+                font-size: 14px;
+            }
+
             cursor: pointer;
             margin: 0 5px;
             user-select: none;
@@ -710,7 +775,7 @@ blockquote {
     }
 
     &__menu {
-        @include r(1023) {
+        @include r(767) {
             position: fixed;
             top: 0;
             right: 0;
@@ -725,7 +790,6 @@ blockquote {
             overflow: auto;
             -webkit-overflow-scrolling: touch;
             opacity: 0;
-            transition: $trans;
             pointer-events: none;
             user-select: none;
 
@@ -745,7 +809,7 @@ blockquote {
         width: 100%;
 
         & > * {
-            &:nth-last-child(-n + 3) {
+            &:nth-last-child(-n + 4) {
                 .dropdown {
                     left: initial;
                     right: 0;
@@ -766,11 +830,11 @@ blockquote {
         & > div,
         & > a {
             @include r(1023) {
-                font-size: 24px;
-                margin-bottom: 10px;
+                font-size: 12px;
             }
 
             @include r(767) {
+                margin-bottom: 10px;
                 font-size: 20px;
             }
 
@@ -812,7 +876,7 @@ blockquote {
             }
 
             svg {
-                @include r(1023) {
+                @include r(767) {
                     display: none;
                 }
 
@@ -824,7 +888,7 @@ blockquote {
         }
 
         .dropdown {
-            @include r(1023) {
+            @include r(767) {
                 position: static;
                 transform: none;
                 opacity: 1;
@@ -843,7 +907,7 @@ blockquote {
             transition: $trans;
 
             &__wrapper {
-                @include r(1023) {
+                @include r(767) {
                     background: transparent;
                     box-shadow: none;
                     padding: 0;
@@ -865,7 +929,7 @@ blockquote {
                 position: relative;
 
                 &::before {
-                    @include r(1023) {
+                    @include r(767) {
                         display: none;
                     }
 
@@ -884,7 +948,7 @@ blockquote {
             }
 
             a {
-                @include r(1023) {
+                @include r(767) {
                     font-size: 18px;
                     display: block;
                 }
@@ -906,8 +970,12 @@ blockquote {
 
     &__search {
         @include r(1023) {
+            margin-left: 15px;
+        }
+
+        @include r(767) {
             margin-left: auto;
-            margin-right: 15px;
+            margin-right: 10px;
         }
 
         margin-left: 75px;
@@ -915,24 +983,43 @@ blockquote {
         padding-right: 5px;
         flex-shrink: 0;
 
-        &.active input {
-            @include r(1023) {
-                width: 75vw;
-            }
-
+        &.active {
             @include r(767) {
-                width: 56vw;
-                padding: 16px 9px;
+                position: absolute;
+                right: 0;
+                top: 18px;
+                left: 10px;
+                z-index: 1;
+                display: flex;
+                justify-content: flex-end;
+
+                button {
+                    position: relative;
+                    top: 13px;
+                }
             }
 
-            width: 387px;
-            padding: 8px 9px;
-            padding-right: 45px;
+            input {
+                @include r(1023) {
+                    width: 75vw;
+                }
+
+                @include r(767) {
+                    width: 100%;
+                    padding: 16px 9px;
+                    padding-right: 45px;
+                }
+
+                width: 387px;
+                padding: 8px 9px;
+                padding-right: 45px;
+            }
         }
 
         input {
             @include r(767) {
-                top: -13px;
+                top: 0;
+                transition: none;
             }
 
             position: absolute;
@@ -952,6 +1039,12 @@ blockquote {
         }
 
         button {
+            @include r(767) {
+                &:hover svg {
+                    fill: $blue !important;
+                }
+            }
+
             position: relative;
             z-index: 1;
             width: 34px;
@@ -976,7 +1069,7 @@ blockquote {
 }
 
 .hamburger {
-    @include r(1023) {
+    @include r(767) {
         display: block;
     }
 
@@ -1320,7 +1413,7 @@ blockquote {
 }
 
 .about {
-    @include r(1023) {
+    @include r(767) {
         margin-bottom: 60px;
 
         .video {
@@ -1336,10 +1429,13 @@ blockquote {
 
     .container {
         @include r(1023) {
-            flex-direction: column;
-            align-items: flex-start;
             background: url(../img/texture.png) repeat center #e6f9e3;
             padding: 48px 15px;
+        }
+
+        @include r(767) {
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         background: url(../img/about.png) no-repeat left top;
@@ -1349,7 +1445,7 @@ blockquote {
         align-items: center;
 
         & > div {
-            @include r(1023) {
+            @include r(767) {
                 width: 100%;
 
                 &:last-child {
@@ -1363,7 +1459,7 @@ blockquote {
     }
 
     &__text {
-        @include r(767) {
+        @include r(1023) {
             font-size: 16px;
         }
 
@@ -2283,11 +2379,8 @@ blockquote {
 }
 
 .history {
-    @include r(1023) {
-        flex-direction: column;
-    }
-
     @include r(757) {
+        flex-direction: column;
         padding: 40px 37px;
     }
 
@@ -2300,19 +2393,26 @@ blockquote {
 
     div {
         @include r(1023) {
+            font-size: 14px;
+        }
+        @include r(767) {
             display: block;
         }
 
         display: flex;
         align-items: flex-start;
 
-        @include r(1023) {
+        @include r(767) {
             order: 2;
         }
     }
 
     img {
         @include r(1023) {
+            width: 50%;
+            margin-left: 25px;
+        }
+        @include r(767) {
             margin-left: 0;
             position: relative;
             left: 50%;
@@ -2462,9 +2562,15 @@ blockquote {
     }
 }
 
+.mainwrapper {
+    width: 100%;
+}
+
 .footer {
     background: url(../img/texture.png) repeat center #ffefd8;
     padding: 17px 0;
+    width: 100%;
+    align-self: flex-end;
 
     .container {
         position: relative;
@@ -2849,6 +2955,10 @@ blockquote {
                 }
 
                 a {
+                    @include r(1023) {
+                        display: block;
+                    }
+
                     text-decoration: none;
 
                     svg {
@@ -3159,6 +3269,10 @@ blockquote {
     }
 
     &__contacts {
+        @include r(1023) {
+            margin-bottom: 35px;
+        }
+
         @include r(767) {
             flex-direction: column;
             align-items: flex-start;
@@ -3461,9 +3575,16 @@ blockquote {
     }
 
     .container {
+        @include r(1023) {
+            margin: 0 15px;
+            width: calc(100% - 30px);
+        }
+
         @include r(767) {
             padding: 30px 30px;
             border-radius: 0;
+            width: 100%;
+            margin: 0;
         }
 
         border-radius: 28px;
@@ -3847,6 +3968,14 @@ blockquote {
         }
 
         .video {
+            @include r(1023) {
+                width: 50% !important;
+            }
+
+            @include r(767) {
+                width: 100% !important;
+            }
+
             margin: 0;
 
             &:hover {
@@ -4256,10 +4385,11 @@ blockquote {
 
     &__list {
         @include r(1023) {
-            flex-wrap: wrap;
+            align-items: flex-start;
         }
 
         @include r(767) {
+            flex-wrap: wrap;
             flex-direction: column;
         }
 
@@ -4301,17 +4431,8 @@ blockquote {
             text-decoration: none;
         }
 
-        & > div {
-            &:last-child {
-                @include r(1023) {
-                    width: 100%;
-                }
-            }
-        }
-
         span {
             @include r(1023) {
-                margin-top: 40px;
                 width: 100%;
                 text-align: center;
             }
@@ -4325,8 +4446,7 @@ blockquote {
 
         .header__social {
             @include r(1023) {
-                width: 100%;
-                justify-content: center;
+                display: block;
             }
 
             @include r(767) {
@@ -4344,6 +4464,10 @@ blockquote {
             }
 
             a {
+                @include r(1023) {
+                    display: block;
+                }
+
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -4415,7 +4539,7 @@ blockquote {
     &__sidebar {
         @include r(1023) {
             width: 100%;
-            height: 400px;
+            height: 251px;
             margin-bottom: 20px;
         }
 
@@ -4673,11 +4797,11 @@ blockquote {
 .map {
     @include r(1023) {
         height: 439px;
+        margin-bottom: 20px;
     }
 
     @include r(767) {
         height: 300px;
-        margin-bottom: 20px;
     }
 
     &.hide {
@@ -4691,7 +4815,7 @@ blockquote {
     overflow: hidden;
 
     &::after {
-        @include r(767) {
+        @include r(1023) {
             display: none;
         }
 

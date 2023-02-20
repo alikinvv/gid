@@ -4,6 +4,7 @@ $('body').on('click', '.header__lang div', (e) => {
 });
 
 $('body').on('click', '.header__search button', (e) => {
+    console.log(e.target);
     $('.header__search').toggleClass('active');
 
     $(document).mouseup(function (e) {
@@ -358,89 +359,6 @@ $('body').on('click', '.program__toggle', (e) => {
     $(e.currentTarget).next().slideToggle().toggleClass('active');
 });
 
-function calculateTotalValue(length) {
-    var minutes = Math.floor(length / 60),
-        seconds_int = length - minutes * 60,
-        seconds_str = seconds_int.toString(),
-        seconds = seconds_str.substr(0, 2),
-        time = minutes + ':' + seconds;
-
-    return time;
-}
-
-function calculateCurrentValue(currentTime) {
-    var current_minute = parseInt(currentTime / 60) % 60,
-        current_seconds_long = currentTime % 60,
-        current_seconds = current_seconds_long.toFixed(),
-        current_time = (current_minute < 10 ? '0' + current_minute : current_minute) + ':' + (current_seconds < 10 ? '0' + current_seconds : current_seconds);
-
-    return current_time;
-}
-
-function initProgressBar() {
-    var player = document.getElementById('player');
-    var length = player.duration;
-    var current_time = player.currentTime;
-
-    $('.start-time').html(calculateCurrentValue(current_time));
-    $('.end-time').html(calculateTotalValue(length));
-
-    var progressbar = document.getElementById('seekObj');
-    progressbar.value = player.currentTime / player.duration;
-    progressbar.addEventListener('click', seek);
-
-    if (player.currentTime == player.duration) {
-        $('#play-btn').removeClass('pause');
-    }
-
-    function seek(evt) {
-        var percent = evt.offsetX / this.offsetWidth;
-        player.currentTime = percent * player.duration;
-        progressbar.value = percent / 100;
-    }
-}
-
-function initPlayers(num) {
-    for (var i = 0; i < num; i++) {
-        (function () {
-            var player = document.getElementById('player'),
-                isPlaying = false,
-                playBtn = document.getElementById('play-btn');
-
-            if (playBtn != null) {
-                playBtn.addEventListener('click', function () {
-                    togglePlay();
-                });
-            }
-
-            function togglePlay() {
-                if (player.paused === false) {
-                    player.pause();
-                    isPlaying = false;
-                    $('#play-btn').removeClass('pause');
-                } else {
-                    player.play();
-                    $('#play-btn').addClass('pause');
-                    isPlaying = true;
-                }
-            }
-        })();
-    }
-}
-
-initPlayers($('#player-container').length);
-
-if ($('#player-container').length) {
-    document.getElementById('player').addEventListener('loadedmetadata', function (_event) {
-        var player = document.getElementById('player');
-        var length = player.duration;
-        var current_time = player.currentTime;
-
-        $('.start-time').html(calculateCurrentValue(current_time));
-        $('.end-time').html(calculateTotalValue(length));
-    });
-}
-
 if ($('#map').length) {
     ymaps.ready(init);
 }
@@ -492,6 +410,7 @@ function init() {
                 iconImageHref: 'img/icons/point-active.svg',
             });
 
+            $('section.guide .guide__main.active #play-btn').removeClass('pause');
             $('section.guide .guide__item.active').removeClass('active');
             $('section.guide .guide__item[data-id="' + objectId + '"]').addClass('active');
             $('section.guide .guide__main.active .guide__body').scrollTop(0);
@@ -525,6 +444,10 @@ function init() {
                 ],
                 14
             );
+            $('audio').each(function () {
+                this.pause(); // Stop playing
+                this.currentTime = 0; // Reset time
+            });
         }
     }
 
@@ -537,6 +460,7 @@ function init() {
         if (next.length > 0) {
             current.removeClass('active');
             next.addClass('active');
+            $('section.guide .guide__main.active #play-btn').removeClass('pause');
             $('section.guide .guide__main.active .guide__body').scrollTop(0);
             $('section.guide .guide__main.active').removeClass('active');
             $('section.guide .guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
@@ -555,6 +479,10 @@ function init() {
                     500
                 );
             myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+            $('audio').each(function () {
+                this.pause(); // Stop playing
+                this.currentTime = 0; // Reset time
+            });
         }
     });
     $('body').on('click', '.modal .guide-next', (e) => {
@@ -564,6 +492,7 @@ function init() {
         if (next.length > 0) {
             current.removeClass('active');
             next.addClass('active');
+            $('.modal .guide__main.active #play-btn').removeClass('pause');
             $('.modal .guide__main.active .guide__body').scrollTop(0);
             $('.modal .guide__main.active').removeClass('active');
             $('.modal .guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
@@ -577,6 +506,10 @@ function init() {
                     500
                 );
             myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+            $('audio').each(function () {
+                this.pause(); // Stop playing
+                this.currentTime = 0; // Reset time
+            });
         }
     });
 
@@ -587,6 +520,7 @@ function init() {
         if (prev.length > 0) {
             current.removeClass('active');
             prev.addClass('active');
+            $('section.guide .guide__main.active #play-btn').removeClass('pause');
             $('section.guide .guide__main.active .guide__body').scrollTop(0);
             $('section.guide .guide__main.active').removeClass('active');
             $('section.guide .guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
@@ -605,6 +539,10 @@ function init() {
                     500
                 );
             myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+            $('audio').each(function () {
+                this.pause(); // Stop playing
+                this.currentTime = 0; // Reset time
+            });
         }
     });
     $('body').on('click', '.modal .guide-prev', (e) => {
@@ -614,6 +552,7 @@ function init() {
         if (prev.length > 0) {
             current.removeClass('active');
             prev.addClass('active');
+            $('.modal .guide__main.active #play-btn').removeClass('pause');
             $('.modal .guide__main.active .guide__body').scrollTop(0);
             $('.modal .guide__main.active').removeClass('active');
             $('.modal .guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
@@ -628,12 +567,17 @@ function init() {
                 );
             myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
         }
+        $('audio').each(function () {
+            this.pause(); // Stop playing
+            this.currentTime = 0; // Reset time
+        });
     });
 
     $('body').on('click', 'section.guide .guide__item', (e) => {
         e.preventDefault();
 
         let target = $(e.currentTarget).attr('data-target');
+        $('section.guide .guide__main.active #play-btn').removeClass('pause');
         $('section.guide .guide__item.active').removeClass('active');
         $(e.currentTarget).addClass('active');
         $('section.guide .guide__content.active').removeClass('active');
@@ -667,11 +611,16 @@ function init() {
             ],
             14
         );
+        $('audio').each(function () {
+            this.pause(); // Stop playing
+            this.currentTime = 0; // Reset time
+        });
     });
     $('body').on('click', '.modal .guide__item', (e) => {
         e.preventDefault();
 
         let target = $(e.currentTarget).attr('data-target');
+        $('.modal .guide__main.active #play-btn').removeClass('pause');
         $('.modal .guide__item.active').removeClass('active');
         $(e.currentTarget).addClass('active');
         $('.modal .guide__content.active').removeClass('active');
@@ -703,6 +652,10 @@ function init() {
             ],
             14
         );
+        $('audio').each(function () {
+            this.pause(); // Stop playing
+            this.currentTime = 0; // Reset time
+        });
     });
 }
 
@@ -716,11 +669,11 @@ let ww = $(window).width();
 let initTablet768 = () => {
     if (ww >= 768 && ww <= 1023 && !$('body').hasClass('s-768')) {
         $('body').addClass('s-768');
-        $('.header__row.bottom').prepend($('.header__row.top .header__contacts'));
+        $('.article__contacts').after($('.article__sidebar'));
         $('.article__item.author').append($('.article__item.contact'));
     } else if (ww >= 1024 && $('body').hasClass('s-768')) {
         $('body').removeClass('s-768');
-        $('.header__row.top').prepend($('.header__row.bottom .header__contacts'));
+        $('.article__wrapper').append($('.article__sidebar'));
         $('.article__item.author').after($('.article__item.contact'));
     }
 
@@ -738,10 +691,10 @@ let initTablet768 = () => {
 let initMobile = () => {
     if (ww <= 767 && !$('body').hasClass('s-312')) {
         $('body').addClass('s-312');
-        $('.article__contacts').after($('.article__sidebar'));
+        $('.header__search').after($('.header__lang'));
     } else if (ww >= 768 && $('body').hasClass('s-312')) {
         $('body').removeClass('s-312');
-        $('.article__wrapper').append($('.article__sidebar'));
+        $('.header__row.top').append($('.header__lang'));
     }
 };
 
@@ -787,3 +740,98 @@ if ($(window).width() >= 1280) {
     var left = $('.breadcrumbs__list').width();
     $('.breadcrumbs__list').scrollLeft(left);
 }
+
+function calculateTotalValue(length) {
+    var minutes = Math.floor(length / 60),
+        seconds_int = length - minutes * 60,
+        seconds_str = seconds_int.toString(),
+        seconds = seconds_str.substr(0, 2),
+        time = minutes + ':' + seconds;
+
+    return time;
+}
+
+function calculateCurrentValue(currentTime) {
+    var current_minute = parseInt(currentTime / 60) % 60,
+        current_seconds_long = currentTime % 60,
+        current_seconds = current_seconds_long.toFixed(),
+        current_time = (current_minute < 10 ? '0' + current_minute : current_minute) + ':' + (current_seconds < 10 ? '0' + current_seconds : current_seconds);
+
+    return current_time;
+}
+
+function initProgressBar() {
+    for (let i = 0; i < $('.player').length; i++) {
+        let player = $('.player').eq(i).find('audio')[0];
+        let length = player.duration;
+        let current_time = player.currentTime;
+
+        $('.player').eq(i).find('.start-time').html(calculateCurrentValue(current_time));
+        $('.player').eq(i).find('.end-time').html(calculateTotalValue(length));
+
+        let progressbar = $('.player').eq(i).find('progress')[0];
+        progressbar.value = player.currentTime / player.duration;
+        progressbar.addEventListener('click', seek);
+
+        if (player.currentTime == player.duration) {
+            $('.player').eq(i).find('#play-btn').removeClass('pause');
+        }
+
+        function seek(evt) {
+            let percent = evt.offsetX / this.offsetWidth;
+            player.currentTime = percent * player.duration;
+            progressbar.value = percent / 100;
+        }
+    }
+}
+
+function initPlayers(num) {
+    for (let i = 0; i < num; i++) {
+        (function () {
+            let player = $('.player').eq(i).find('audio')[0],
+                isPlaying = false,
+                playBtn = $('.player').eq(i).find('#play-btn')[0];
+
+            if (playBtn != null) {
+                playBtn.addEventListener('click', function () {
+                    togglePlay();
+                });
+            }
+
+            function togglePlay() {
+                if (player.paused === false) {
+                    player.pause();
+                    isPlaying = false;
+                    $(playBtn).removeClass('pause');
+                } else {
+                    player.play();
+                    $(playBtn).addClass('pause');
+                    isPlaying = true;
+                }
+            }
+        })();
+    }
+}
+
+initPlayers($('.player').length);
+
+$('body').on('click', '.header__mobile', (e) => {
+    $(e.currentTarget).toggleClass('active');
+
+    $(document).mouseup(function (e) {
+        let container = $('.header__mobile');
+        if (container.has(e.target).length === 0) {
+            container.removeClass('active');
+            $(document).unbind('mouseup');
+            return false;
+        }
+    });
+
+    $(document).keyup(function (e) {
+        if (e.keyCode == 27) {
+            $('.header__mobile').removeClass('active');
+            $(document).unbind('keyup');
+            return false;
+        }
+    });
+});
