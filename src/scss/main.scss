@@ -4409,6 +4409,7 @@ blockquote {
         & > div {
             @include r(767) {
                 margin-bottom: 20px;
+                width: 100%;
             }
 
             display: flex;
