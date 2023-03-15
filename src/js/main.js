@@ -250,10 +250,6 @@ $('body').on('click', '[data-modal]:not(.modal)', (e) => {
 
     if ($(e.currentTarget).attr('data-modal') === 'guide') {
         $('html, body').addClass('overflow');
-        $('.guide__item').removeClass('active');
-        $('.guide__item[data-id="1"]').addClass('active');
-        $('.guide__main').removeClass('active');
-        $('.guide__main[data-id="1"]').addClass('active');
     }
 });
 
@@ -359,8 +355,223 @@ $('body').on('click', '.program__toggle', (e) => {
     $(e.currentTarget).next().slideToggle().toggleClass('active');
 });
 
+const guideInit = (myMap) => {
+    $('body').on('click', 'section.guide .guide-next', (e) => {
+        e.preventDefault();
+        let current = $('section.guide .guide__item.active');
+        let next = current.next();
+        if (next.length > 0) {
+            current.removeClass('active');
+            next.addClass('active');
+            $('section.guide .guide__main.active #play-btn').removeClass('pause');
+            $('section.guide .guide__main.active .guide__body').scrollTop(0);
+            $('section.guide .guide__main.active').removeClass('active');
+            $('section.guide .guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
+            $('html, body')
+                .stop()
+                .animate({ scrollTop: $('section.guide').offset().top - 20 }, 500);
+            $('section.guide .guide__sidebar')
+                .stop()
+                .animate(
+                    {
+                        scrollTop:
+                            $('section.guide .guide__item.active').offset().top -
+                            $('section.guide .guide__sidebar').offset().top +
+                            $('section.guide .guide__sidebar').scrollTop(),
+                    },
+                    500
+                );
+            myMap &&
+                myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+            $('audio').each(function () {
+                this.pause(); // Stop playing
+                this.currentTime = 0; // Reset time
+            });
+        }
+    });
+    $('body').on('click', '.modal .guide-next', (e) => {
+        e.preventDefault();
+        let current = $('.modal .guide__item.active');
+        let next = current.next();
+        if (next.length > 0) {
+            current.removeClass('active');
+            next.addClass('active');
+            $('.modal .guide__main.active #play-btn').removeClass('pause');
+            $('.modal .guide__main.active .guide__body').scrollTop(0);
+            $('.modal .guide__main.active').removeClass('active');
+            $('.modal .guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
+            $('.modal .guide__sidebar')
+                .stop()
+                .animate(
+                    {
+                        scrollTop:
+                            $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
+                    },
+                    500
+                );
+            myMap &&
+                myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+            $('audio').each(function () {
+                this.pause(); // Stop playing
+                this.currentTime = 0; // Reset time
+            });
+        }
+    });
+
+    $('body').on('click', 'section.guide .guide-prev', (e) => {
+        e.preventDefault();
+        let current = $('section.guide .guide__item.active');
+        let prev = current.prev();
+        if (prev.length > 0) {
+            current.removeClass('active');
+            prev.addClass('active');
+            $('section.guide .guide__main.active #play-btn').removeClass('pause');
+            $('section.guide .guide__main.active .guide__body').scrollTop(0);
+            $('section.guide .guide__main.active').removeClass('active');
+            $('section.guide .guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
+            $('html, body')
+                .stop()
+                .animate({ scrollTop: $('section.guide').offset().top - 20 }, 500);
+            $('section.guide .guide__sidebar')
+                .stop()
+                .animate(
+                    {
+                        scrollTop:
+                            $(' section.guide .guide__item.active').offset().top -
+                            $('section.guide .guide__sidebar').offset().top +
+                            $('section.guide .guide__sidebar').scrollTop(),
+                    },
+                    500
+                );
+            myMap &&
+                myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+            $('audio').each(function () {
+                this.pause(); // Stop playing
+                this.currentTime = 0; // Reset time
+            });
+        }
+    });
+    $('body').on('click', '.modal .guide-prev', (e) => {
+        e.preventDefault();
+        let current = $('.modal .guide__item.active');
+        let prev = current.prev();
+        if (prev.length > 0) {
+            current.removeClass('active');
+            prev.addClass('active');
+            $('.modal .guide__main.active #play-btn').removeClass('pause');
+            $('.modal .guide__main.active .guide__body').scrollTop(0);
+            $('.modal .guide__main.active').removeClass('active');
+            $('.modal .guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
+            $('.modal .guide__sidebar')
+                .stop()
+                .animate(
+                    {
+                        scrollTop:
+                            $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
+                    },
+                    500
+                );
+            myMap &&
+                myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
+        }
+        $('audio').each(function () {
+            this.pause(); // Stop playing
+            this.currentTime = 0; // Reset time
+        });
+    });
+
+    $('body').on('click', 'section.guide .guide__item', (e) => {
+        e.preventDefault();
+
+        let target = $(e.currentTarget).attr('data-target');
+        $('section.guide .guide__main.active #play-btn').removeClass('pause');
+        $('section.guide .guide__item.active').removeClass('active');
+        $(e.currentTarget).addClass('active');
+        $('section.guide .guide__content.active').removeClass('active');
+        $(target).addClass('active');
+        $('section.guide .guide__main.active .guide__body').scrollTop(0);
+        $('section.guide .guide__main.active').removeClass('active');
+        $('section.guide .guide__main[data-id="' + $(e.currentTarget).attr('data-id') + '"]').addClass('active');
+        $('section.guide .guide__sidebar')
+            .stop()
+            .animate(
+                {
+                    scrollTop:
+                        $('section.guide .guide__item.active').offset().top -
+                        $('section.guide .guide__sidebar').offset().top +
+                        $('section.guide .guide__sidebar').scrollTop(),
+                },
+                500
+            );
+        myMap &&
+            myMap.setCenter(
+                [
+                    Number(
+                        $(e.currentTarget)
+                            .attr('data-coordinate')
+                            .match(/(.*), (.*)/)[1]
+                    ),
+                    Number(
+                        $(e.currentTarget)
+                            .attr('data-coordinate')
+                            .match(/(.*), (.*)/)[2]
+                    ),
+                ],
+                14
+            );
+        $('audio').each(function () {
+            this.pause(); // Stop playing
+            this.currentTime = 0; // Reset time
+        });
+    });
+    $('body').on('click', '.modal .guide__item', (e) => {
+        e.preventDefault();
+
+        let target = $(e.currentTarget).attr('data-target');
+        $('.modal .guide__main.active #play-btn').removeClass('pause');
+        $('.modal .guide__item.active').removeClass('active');
+        $(e.currentTarget).addClass('active');
+        $('.modal .guide__content.active').removeClass('active');
+        $(target).addClass('active');
+        $('.modal .guide__main.active .guide__body').scrollTop(0);
+        $('.modal .guide__main.active').removeClass('active');
+        $('.modal .guide__main[data-id="' + $(e.currentTarget).attr('data-id') + '"]').addClass('active');
+        $('.modal .guide__sidebar')
+            .stop()
+            .animate(
+                {
+                    scrollTop:
+                        $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
+                },
+                500
+            );
+        myMap &&
+            myMap.setCenter(
+                [
+                    Number(
+                        $(e.currentTarget)
+                            .attr('data-coordinate')
+                            .match(/(.*), (.*)/)[1]
+                    ),
+                    Number(
+                        $(e.currentTarget)
+                            .attr('data-coordinate')
+                            .match(/(.*), (.*)/)[2]
+                    ),
+                ],
+                14
+            );
+        $('audio').each(function () {
+            this.pause(); // Stop playing
+            this.currentTime = 0; // Reset time
+        });
+    });
+};
+
 if ($('#map').length) {
     ymaps.ready(init);
+} else {
+    guideInit();
 }
 
 function init() {
@@ -451,212 +662,9 @@ function init() {
         }
     }
 
+    guideInit(myMap);
+
     objectManager.objects.events.add(['mousedown', 'mouseup'], onObjectEvent);
-
-    $('body').on('click', 'section.guide .guide-next', (e) => {
-        e.preventDefault();
-        let current = $('section.guide .guide__item.active');
-        let next = current.next();
-        if (next.length > 0) {
-            current.removeClass('active');
-            next.addClass('active');
-            $('section.guide .guide__main.active #play-btn').removeClass('pause');
-            $('section.guide .guide__main.active .guide__body').scrollTop(0);
-            $('section.guide .guide__main.active').removeClass('active');
-            $('section.guide .guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
-            $('html, body')
-                .stop()
-                .animate({ scrollTop: $('section.guide').offset().top - 20 }, 500);
-            $('section.guide .guide__sidebar')
-                .stop()
-                .animate(
-                    {
-                        scrollTop:
-                            $('section.guide .guide__item.active').offset().top -
-                            $('section.guide .guide__sidebar').offset().top +
-                            $('section.guide .guide__sidebar').scrollTop(),
-                    },
-                    500
-                );
-            myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
-            $('audio').each(function () {
-                this.pause(); // Stop playing
-                this.currentTime = 0; // Reset time
-            });
-        }
-    });
-    $('body').on('click', '.modal .guide-next', (e) => {
-        e.preventDefault();
-        let current = $('.modal .guide__item.active');
-        let next = current.next();
-        if (next.length > 0) {
-            current.removeClass('active');
-            next.addClass('active');
-            $('.modal .guide__main.active #play-btn').removeClass('pause');
-            $('.modal .guide__main.active .guide__body').scrollTop(0);
-            $('.modal .guide__main.active').removeClass('active');
-            $('.modal .guide__main[data-id="' + next.attr('data-id') + '"]').addClass('active');
-            $('.modal .guide__sidebar')
-                .stop()
-                .animate(
-                    {
-                        scrollTop:
-                            $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
-                    },
-                    500
-                );
-            myMap.setCenter([Number(next.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(next.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
-            $('audio').each(function () {
-                this.pause(); // Stop playing
-                this.currentTime = 0; // Reset time
-            });
-        }
-    });
-
-    $('body').on('click', 'section.guide .guide-prev', (e) => {
-        e.preventDefault();
-        let current = $('section.guide .guide__item.active');
-        let prev = current.prev();
-        if (prev.length > 0) {
-            current.removeClass('active');
-            prev.addClass('active');
-            $('section.guide .guide__main.active #play-btn').removeClass('pause');
-            $('section.guide .guide__main.active .guide__body').scrollTop(0);
-            $('section.guide .guide__main.active').removeClass('active');
-            $('section.guide .guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
-            $('html, body')
-                .stop()
-                .animate({ scrollTop: $('section.guide').offset().top - 20 }, 500);
-            $('section.guide .guide__sidebar')
-                .stop()
-                .animate(
-                    {
-                        scrollTop:
-                            $(' section.guide .guide__item.active').offset().top -
-                            $('section.guide .guide__sidebar').offset().top +
-                            $('section.guide .guide__sidebar').scrollTop(),
-                    },
-                    500
-                );
-            myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
-            $('audio').each(function () {
-                this.pause(); // Stop playing
-                this.currentTime = 0; // Reset time
-            });
-        }
-    });
-    $('body').on('click', '.modal .guide-prev', (e) => {
-        e.preventDefault();
-        let current = $('.modal .guide__item.active');
-        let prev = current.prev();
-        if (prev.length > 0) {
-            current.removeClass('active');
-            prev.addClass('active');
-            $('.modal .guide__main.active #play-btn').removeClass('pause');
-            $('.modal .guide__main.active .guide__body').scrollTop(0);
-            $('.modal .guide__main.active').removeClass('active');
-            $('.modal .guide__main[data-id="' + prev.attr('data-id') + '"]').addClass('active');
-            $('.modal .guide__sidebar')
-                .stop()
-                .animate(
-                    {
-                        scrollTop:
-                            $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
-                    },
-                    500
-                );
-            myMap.setCenter([Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[1]), Number(prev.attr('data-coordinate').match(/(.*), (.*)/)[2])], 14);
-        }
-        $('audio').each(function () {
-            this.pause(); // Stop playing
-            this.currentTime = 0; // Reset time
-        });
-    });
-
-    $('body').on('click', 'section.guide .guide__item', (e) => {
-        e.preventDefault();
-
-        let target = $(e.currentTarget).attr('data-target');
-        $('section.guide .guide__main.active #play-btn').removeClass('pause');
-        $('section.guide .guide__item.active').removeClass('active');
-        $(e.currentTarget).addClass('active');
-        $('section.guide .guide__content.active').removeClass('active');
-        $(target).addClass('active');
-        $('section.guide .guide__main.active .guide__body').scrollTop(0);
-        $('section.guide .guide__main.active').removeClass('active');
-        $('section.guide .guide__main[data-id="' + $(e.currentTarget).attr('data-id') + '"]').addClass('active');
-        $('section.guide .guide__sidebar')
-            .stop()
-            .animate(
-                {
-                    scrollTop:
-                        $('section.guide .guide__item.active').offset().top -
-                        $('section.guide .guide__sidebar').offset().top +
-                        $('section.guide .guide__sidebar').scrollTop(),
-                },
-                500
-            );
-        myMap.setCenter(
-            [
-                Number(
-                    $(e.currentTarget)
-                        .attr('data-coordinate')
-                        .match(/(.*), (.*)/)[1]
-                ),
-                Number(
-                    $(e.currentTarget)
-                        .attr('data-coordinate')
-                        .match(/(.*), (.*)/)[2]
-                ),
-            ],
-            14
-        );
-        $('audio').each(function () {
-            this.pause(); // Stop playing
-            this.currentTime = 0; // Reset time
-        });
-    });
-    $('body').on('click', '.modal .guide__item', (e) => {
-        e.preventDefault();
-
-        let target = $(e.currentTarget).attr('data-target');
-        $('.modal .guide__main.active #play-btn').removeClass('pause');
-        $('.modal .guide__item.active').removeClass('active');
-        $(e.currentTarget).addClass('active');
-        $('.modal .guide__content.active').removeClass('active');
-        $(target).addClass('active');
-        $('.modal .guide__main.active .guide__body').scrollTop(0);
-        $('.modal .guide__main.active').removeClass('active');
-        $('.modal .guide__main[data-id="' + $(e.currentTarget).attr('data-id') + '"]').addClass('active');
-        $('.modal .guide__sidebar')
-            .stop()
-            .animate(
-                {
-                    scrollTop:
-                        $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
-                },
-                500
-            );
-        myMap.setCenter(
-            [
-                Number(
-                    $(e.currentTarget)
-                        .attr('data-coordinate')
-                        .match(/(.*), (.*)/)[1]
-                ),
-                Number(
-                    $(e.currentTarget)
-                        .attr('data-coordinate')
-                        .match(/(.*), (.*)/)[2]
-                ),
-            ],
-            14
-        );
-        $('audio').each(function () {
-            this.pause(); // Stop playing
-            this.currentTime = 0; // Reset time
-        });
-    });
 }
 
 $('.hamburger').on('click', function () {
