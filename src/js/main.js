@@ -250,6 +250,27 @@ $('body').on('click', '[data-modal]:not(.modal)', (e) => {
 
     if ($(e.currentTarget).attr('data-modal') === 'guide') {
         $('html, body').addClass('overflow');
+        $('.modal .guide__main.active #play-btn').removeClass('pause');
+        $('.modal .guide__main.active .guide__body').scrollTop(0);
+        $('.modal .guide__item.active').removeClass('active');
+        $('.modal .guide__item').removeClass('active');
+        $('.modal .guide__main').removeClass('active');
+        $('.modal .guide__content.active').removeClass('active');
+        $(`.modal .guide__item[data-id="${$(e.currentTarget).attr('data-id')}"]`).addClass('active');
+        $(`.modal .guide__main[data-id="${$(e.currentTarget).attr('data-id')}"]`).addClass('active');
+        $('.modal .guide__sidebar')
+            .stop()
+            .animate(
+                {
+                    scrollTop:
+                        $('.modal .guide__item.active').offset().top - $('.modal .guide__sidebar').offset().top + $('.modal .guide__sidebar').scrollTop(),
+                },
+                500
+            );
+        $('audio').each(function () {
+            this.pause(); // Stop playing
+            this.currentTime = 0; // Reset time
+        });
     }
 });
 
